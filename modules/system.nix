@@ -20,6 +20,12 @@
       /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
 
+    activationScripts.extraActivation.text = ''
+      ln -sf "${pkgs.jdk11}/zulu-11.jdk" "/Library/Java/JavaVirtualMachines/"
+      ln -sf "${pkgs.jdk17}/zulu-17.jdk" "/Library/Java/JavaVirtualMachines/"
+      ln -sf "${pkgs.jdk}/zulu-21.jdk" "/Library/Java/JavaVirtualMachines/"
+    '';
+
     activationScripts.applications.text = let
       env = pkgs.buildEnv {
         name = "system-applications";
