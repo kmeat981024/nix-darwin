@@ -201,10 +201,26 @@
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   # this is required if you want to use darwin's default shell - zsh
-  programs.zsh.enable = true;
-  environment.shells = [
-    pkgs.zsh
-  ];
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableFastSyntaxHighlighting = true;
+    enableFzfCompletion = true;
+    enableFzfGit = true;
+    enableFzfHistory = true;
+    promptInit = ''
+    source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+    '';
+  };
+
+  environment = {
+    shells = [
+      pkgs.zsh
+    ];
+    shellAliases = {
+      rebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Seoul";

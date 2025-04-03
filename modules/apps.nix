@@ -35,6 +35,7 @@
     tmux
     tree
     zoxide
+    zsh-powerlevel10k
 
     # GUI
     alt-tab-macos
