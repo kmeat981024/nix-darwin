@@ -210,6 +210,7 @@
     enableFzfHistory = true;
     promptInit = ''
     source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+    source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
     '';
   };
 
@@ -218,7 +219,17 @@
       pkgs.zsh
     ];
     shellAliases = {
-      rebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+      ls = "lsd --color=auto";
+      l = "lsd -lhG";
+      ll = "lsd -alhG";
+      lh = "lsd -dl .*";
+      lsd = "lsd --group-directories-first";
+      filecount="find . -type f | wc -l";
+      cat = "bat --color=always";
+      man = "tldr";
+      nixrebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+      nixconfig = "code ~/.config/nix-darwin";
+      sshconfig = "code ~/.ssh/config";
     };
   };
 

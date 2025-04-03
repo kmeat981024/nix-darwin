@@ -30,7 +30,6 @@
     darwin,
     ...
   }: let
-    # TODO replace with your own username, system and hostname
     username = "poby";
     system = "aarch64-darwin";
     hostname = "pobys-macbook-pro";

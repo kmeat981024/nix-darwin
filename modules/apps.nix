@@ -36,6 +36,8 @@
     tree
     zoxide
     zsh-powerlevel10k
+    zsh-fzf-tab
+    commitizen
 
     # GUI
     alt-tab-macos
