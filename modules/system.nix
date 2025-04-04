@@ -221,6 +221,7 @@
     shellAliases = {
       ls = "lsd --color=auto";
       l = "lsd -lhG";
+      lt = "l --tree";
       ll = "lsd -alhG";
       lh = "lsd -dl .*";
       lsd = "lsd --group-directories-first";
@@ -230,6 +231,16 @@
       nixrebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
       nixconfig = "code ~/.config/nix-darwin";
       sshconfig = "code ~/.ssh/config";
+
+      # git
+      g = "git";
+      gaa = "git add --all";
+      gcm = "git commit -m";
+      gca = "git commit --amend";
+      gst = "git status";
+      gco = "git checkout";
+      gl = "git pull";
+      glg = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short";
     };
   };
 
