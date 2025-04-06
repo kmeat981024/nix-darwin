@@ -117,6 +117,7 @@
 
         AppleShowScrollBars = "WhenScrolling";
         AppleScrollerPagingBehavior = true;
+        AppleEnableMouseSwipeNavigateWithScrolls = true;
 
         NSAutomaticCapitalizationEnabled = false;
         NSAutomaticDashSubstitutionEnabled = false;
