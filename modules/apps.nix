@@ -83,6 +83,9 @@
       KakaoTalk = 869223134;
       Across = 6444851827;
       Flighty = 1358823008;
+      Numbers = 409203825;
+      Pages = 409201541;
+      Keynote = 409183694;
     };
 
     taps = [ ];
