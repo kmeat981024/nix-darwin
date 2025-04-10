@@ -211,6 +211,7 @@
     enableFzfGit = true;
     enableFzfHistory = true;
     promptInit = ''
+    fastfetch
     source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
     '';
@@ -231,7 +232,7 @@
       cat = "bat --color=always";
       man = "tldr";
       nixrebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
-      nixupgrade = "cd ~/.config/nix-darwin && nix flake update && nix-garbage-collect";
+      nixupgrade = "cd ~/.config/nix-darwin && nix flake update && nix-collect-garbage";
       nixconfig = "code ~/.config/nix-darwin";
       sshconfig = "code ~/.ssh/config";
 
