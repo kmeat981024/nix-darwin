@@ -17,7 +17,6 @@
     neovim
     git
     just # use Justfile to simplify nix-darwin's commands
-    nodejs_22
     ffmpeg
     fzf
     bat
@@ -32,7 +31,6 @@
     tldr
     tmux
     tree
-    uv
     zoxide
     zsh-powerlevel10k
     zsh-fzf-tab
@@ -93,6 +91,8 @@
     brews = [
       "wget"
       "curl" # do not install curl via nixpkgs, it's not working well on macOS!
+      "node"
+      "uv"
     ];
 
     # `brew install --cask`
