@@ -17,7 +17,7 @@
     neovim
     git
     just # use Justfile to simplify nix-darwin's commands
-    nodejs-slim
+    nodejs_22
     ffmpeg
     fzf
     bat
@@ -32,6 +32,7 @@
     tldr
     tmux
     tree
+    uv
     zoxide
     zsh-powerlevel10k
     zsh-fzf-tab

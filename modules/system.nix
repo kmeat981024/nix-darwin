@@ -232,7 +232,7 @@
       cat = "bat --color=always";
       man = "tldr";
       nixrebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
-      nixupgrade = "cd ~/.config/nix-darwin && nix flake update && nix-collect-garbage";
+      nixupgrade = "cd ~/.config/nix-darwin && nix flake update";
       nixconfig = "code ~/.config/nix-darwin";
       sshconfig = "code ~/.ssh/config";
 
