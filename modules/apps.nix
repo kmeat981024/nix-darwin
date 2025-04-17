@@ -93,6 +93,7 @@
       "curl" # do not install curl via nixpkgs, it's not working well on macOS!
       "node"
       "uv"
+      "pipx"
     ];
 
     # `brew install --cask`
