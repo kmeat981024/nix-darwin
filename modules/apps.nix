@@ -99,6 +99,7 @@
     # `brew install --cask`
     casks = [
       "claude"
+      "batfi"
       "docker"
       "daisydisk"
       "ghostty"
@@ -109,7 +110,7 @@
       "onyx"
       "readdle-spark"
       "shottr"
-      "zen-browser"
+      "zen"
     ];
   };
 }
