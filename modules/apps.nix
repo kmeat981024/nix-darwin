@@ -110,7 +110,7 @@
       "onyx"
       "readdle-spark"
       "shottr"
-      "zen"
+      "vivaldi"
     ];
   };
 }
