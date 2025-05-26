@@ -110,7 +110,7 @@
       "onyx"
       "readdle-spark"
       "shottr"
-      "vivaldi"
+      "brave-browser"
     ];
   };
 }
