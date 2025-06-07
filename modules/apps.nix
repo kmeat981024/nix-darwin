@@ -23,9 +23,6 @@
     fastfetch
     gh
     lsd
-    jdk
-    jdk17
-    jdk11
     mkalias
     python310
     tldr
@@ -47,7 +44,6 @@
     jetbrains.idea-ultimate
     ice-bar
     keka
-    postman
     raycast
     rectangle
     slack
@@ -91,9 +87,11 @@
     brews = [
       "wget"
       "curl" # do not install curl via nixpkgs, it's not working well on macOS!
-      "node"
+      "nvm"
       "uv"
-      "pipx"
+      "openjdk"
+      "openjdk@21"
+      "openjdk@17"
     ];
 
     # `brew install --cask`
@@ -111,6 +109,16 @@
       "readdle-spark"
       "shottr"
       "brave-browser"
+
+      # Fonts
+      "font-fontawesome"
+      "font-jetbrains-mono-nerd-font"
+      "font-meslo-lg-nerd-font"
+      "font-d2coding"
+      "font-fira-code-nerd-font"
+      "font-symbols-only-nerd-font"
+      "font-material-design-icons-webfont"
+      "font-pretendard"
     ];
   };
 }

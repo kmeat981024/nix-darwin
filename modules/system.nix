@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, username, ... }:
 
   ###################################################################################
   #
@@ -12,18 +12,14 @@
   ###################################################################################
 {
   system = {
-    stateVersion = 5;
+    primaryUser = username;
+    stateVersion = 6;
+
     # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
-    activationScripts.postUserActivation.text = ''
+    activationScripts.extraActivation.text = ''
       # activateSettings -u will reload the settings from the database and apply them to the current session,
       # so we do not need to logout and login again to make the changes take effect.
-      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    '';
-
-    activationScripts.extraActivation.text = ''
-      ln -sf "${pkgs.jdk11}/zulu-11.jdk" "/Library/Java/JavaVirtualMachines/"
-      ln -sf "${pkgs.jdk17}/zulu-17.jdk" "/Library/Java/JavaVirtualMachines/"
-      ln -sf "${pkgs.jdk}/zulu-21.jdk" "/Library/Java/JavaVirtualMachines/"
+      sudo -u ${username} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
 
     activationScripts.applications.text = let
@@ -231,7 +227,7 @@
       filecount="find . -type f | wc -l";
       cat = "bat --color=always";
       man = "tldr";
-      nixrebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+      nixrebuild = "sudo darwin-rebuild switch --flake ~/.config/nix-darwin";
       nixupgrade = "cd ~/.config/nix-darwin && nix flake update";
       nixconfig = "code ~/.config/nix-darwin";
       sshconfig = "code ~/.ssh/config";
@@ -251,20 +247,4 @@
 
   # Set your time zone.
   time.timeZone = "Asia/Seoul";
-
-  # Fonts
-  fonts = {
-    packages = with pkgs; [
-      # icon fonts
-      material-design-icons
-      font-awesome
-
-      # nerdfonts
-      nerd-fonts.symbols-only
-      nerd-fonts.meslo-lg
-      nerd-fonts.d2coding
-      nerd-fonts.fira-code
-      nerd-fonts.jetbrains-mono
-    ];
-  };
 }
