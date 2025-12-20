@@ -229,8 +229,8 @@
       man = "tldr";
       nixrebuild = "sudo darwin-rebuild switch --flake ~/.config/nix-darwin";
       nixupgrade = "cd ~/.config/nix-darwin && nix flake update";
-      nixconfig = "code ~/.config/nix-darwin";
-      sshconfig = "code ~/.ssh/config";
+      nixconfig = "nvim ~/.config/nix-darwin";
+      sshconfig = "nvim ~/.ssh/config";
 
       # git
       g = "git";

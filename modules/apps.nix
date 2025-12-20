@@ -14,7 +14,6 @@
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
   environment.systemPackages = with pkgs; [
     # CLI
-    neovim
     git
     just # use Justfile to simplify nix-darwin's commands
     ffmpeg
@@ -32,25 +31,6 @@
     zsh-powerlevel10k
     zsh-fzf-tab
     commitizen
-
-    # GUI
-    alt-tab-macos
-    bitwarden-desktop
-    bruno
-    discord
-    pretendard
-    google-chrome
-    iina
-    jetbrains.idea-ultimate
-    ice-bar
-    keka
-    raycast
-    rectangle
-    slack
-    stats
-    telegram-desktop
-    vscode
-    zoom-us
   ];
   environment.variables.EDITOR = "nvim";
 
@@ -79,6 +59,7 @@
       Numbers = 409203825;
       Pages = 409201541;
       Keynote = 409183694;
+      Bitwarden = 1352778147;
     };
 
     taps = [ ];
@@ -92,13 +73,31 @@
       "openjdk"
       "openjdk@21"
       "openjdk@17"
+      "neovim"
+      "ripgrep"
     ];
 
     # `brew install --cask`
     casks = [
+      "alt-tab"
+      "bruno"
+      "discord"
+      "google-chrome"
+      "iina"
+      "intellij-idea"
+      "jordanbaird-ice"
+      "keka"
+      "raycast"
+      "rectangle"
+      "slack"
+      "stats"
+      "telegram"
+      "visual-studio-code"
+      "zoom"
       "claude"
       "batfi"
-      "docker"
+      "docker-desktop"
+      "cursor"
       "daisydisk"
       "ghostty"
       "hammerspoon"
@@ -106,9 +105,9 @@
       "logi-options+"
       "notion"
       "onyx"
-      "readdle-spark"
       "shottr"
-      "brave-browser"
+      "arc"
+      "obsidian"
 
       # Fonts
       "font-fontawesome"
