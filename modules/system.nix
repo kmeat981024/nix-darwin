@@ -202,7 +202,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    enableAutoSuggestions = true;
+    enableAutosuggestions = true;
     enableFastSyntaxHighlighting = true;
     enableFzfCompletion = true;
     enableFzfGit = true;
