@@ -75,6 +75,7 @@
       "openjdk@17"
       "neovim"
       "ripgrep"
+      "tree-sitter"
     ];
 
     # `brew install --cask`
@@ -108,6 +109,8 @@
       "shottr"
       "arc"
       "obsidian"
+      "antigravity"
+      "figma"
 
       # Fonts
       "font-fontawesome"
