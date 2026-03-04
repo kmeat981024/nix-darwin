@@ -13,11 +13,6 @@ default:
 #
 ############################################################################
 
-#  TODO Feel free to remove this target if you don't need a proxy to speed up the build process
-[group('desktop')]
-darwin-set-proxy:
-  sudo python3 scripts/darwin_set_proxy.py
-
 [group('desktop')]
 darwin: darwin-set-proxy
   nix build .#darwinConfigurations.{{hostname}}.system \
