@@ -19,7 +19,7 @@
     ./mise.nix
     ./ghostty.nix
     ./bat.nix
-    # TODO ./aerospace.nix
+    ./aerospace.nix
   ];
 
   home = {
