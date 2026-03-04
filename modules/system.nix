@@ -1,21 +1,10 @@
-{ pkgs, config, username, ... }:
+{ pkgs, config, username, hostname, ... }:
 
-  ###################################################################################
-  #
-  #  macOS's System configuration
-  #
-  #  All the configuration options are documented here:
-  #    https://daiderd.com/nix-darwin/manual/index.html#sec-options
-  #  Incomplete list of macOS `defaults` commands :
-  #    https://github.com/yannbertrand/macos-defaults
-  #
-  ###################################################################################
 {
   system = {
     primaryUser = username;
     stateVersion = 6;
 
-    # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
     activationScripts.extraActivation.text = ''
       # activateSettings -u will reload the settings from the database and apply them to the current session,
       # so we do not need to logout and login again to make the changes take effect.
@@ -30,26 +19,24 @@
       };
     in
       pkgs.lib.mkForce ''
-      # Set up applications.
-      echo "setting up /Applications..." >&2
-      rm -rf /Applications/Nix\ Apps
-      mkdir -p /Applications/Nix\ Apps
-      find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-      while read -r src; do
-        app_name=$(basename "$src")
-        echo "copying $src" >&2
-        ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-      done
-          '';
+        # Set up applications.
+        echo "setting up /Applications..." >&2
+        rm -rf /Applications/Nix\ Apps
+        mkdir -p /Applications/Nix\ Apps
+        find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+        while read -r src; do
+          app_name=$(basename "$src")
+          echo "copying $src" >&2
+          ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+        done
+      '';
 
     defaults = {
-      # login window
+
       loginwindow = {
-        GuestEnabled = false;  # disable guest user
-        SHOWFULLNAME = true;  # show full name in login window
+        GuestEnabled = false;
       };
 
-      # control center
       controlcenter = {
         Sound = false;
         Bluetooth = false;
@@ -58,14 +45,11 @@
         NowPlaying = false;
       };
 
-      # clock
       menuExtraClock = {
         Show24Hour = true;
-        ShowAMPM = false;
         ShowDayOfWeek = false;
       };
-      
-      # dock
+
       dock = {
         autohide = true;
         autohide-delay = 0.01;
@@ -75,38 +59,69 @@
         tilesize = 50;
         magnification = true;
         largesize = 70;
-        wvous-bl-corner = 11;
+        showMissionControlGestureEnabled = true;
       };
 
-      # finder
       finder = {
         AppleShowAllFiles = true;
+        AppleShowAllExtensions = true;
         ShowStatusBar = true;
         ShowPathbar = true;
-        FXPreferredViewStyle = "Nlsv";
-        AppleShowAllExtensions = true;
-        QuitMenuItem = true;
+        FXPreferredViewStyle = "clmv";
+        FXRemoveOldTrashItems = true;
+        _FXEnableColumnAutoSizing = true;
         _FXShowPosixPathInTitle = true;
         _FXSortFoldersFirst = true;
+        _FXSortFoldersFirstOnDesktop = true;
         FXEnableExtensionChangeWarning = false;
-        NewWindowTarget = "Home";
+        FXDefaultSearchScope = "SCcf";
+        NewWindowTarget = "Other";
+        NewWindowTargetPath = "/Users/${username}/Downloads";
+        ShowExternalHardDrivesOnDesktop = true;
+        ShowHardDrivesOnDesktop = true;
+        ShowMountedServersOnDesktop = true;
+        ShowRemovableMediaOnDesktop = true;
+        QuitMenuItem = true;
       };
 
-      # trackpad
       trackpad = {
         Clicking = true;
-        TrackpadRightClick = true;  # enable two finger right click
-        TrackpadThreeFingerDrag = true;  # enable three finger drag
+        TrackpadRightClick = true;  # two finger right click
+        TrackpadThreeFingerDrag = true;
+        TrackpadFourFingerHorizSwipeGesture = 2;  # swipe between full-screen applications
+        TrackpadFourFingerVertSwipeGesture = 2; # down for Mission Control, up for App Expose
+        TrackpadPinch = true;
+        TrackpadThreeFingerHorizSwipGesture = 0;  # disable for three finger drag
+        TrackpadThreeFingerVertSwipeGesture = 0; # disable for three finger drag
+        TrackpadTwoFingerDoubleTapGesture = true; # smart zoom
+        TrackpadTwoFingerFromRightEdgeSwipeGesture = 0;
       };
 
-      # customize settings that not supported by nix-darwin directly
-      # Incomplete list of macOS `defaults` commands :
-      #   https://github.com/yannbertrand/macos-defaults
+      screensaver = {
+        askForPassword = true;
+        askForPasswordDelay = 0;
+      };
+
+      smb = {
+        NetBIOSName = hostname;
+        ServerDescription = hostname;
+      };
+
+      WindowManager = {
+        AppWindowGroupingBehavior = true;
+        EnableStandardClickToShowDesktop = false;
+        EnableTilingByEdgeDrag = false;
+        EnableTilingOptionAccelerator = false;
+        EnableTopTilingByEdgeDrag = false;
+        StandardHideDesktopIcons = true;
+        StandardHideWidgets = true;
+      };
+
+      # Customize settings that not supported by nix-darwin directly
+      # source: https://github.com/yannbertrand/macos-defaults
       NSGlobalDomain = {
-        # `defaults read NSGlobalDomain "xxx"`
-        "com.apple.swipescrolldirection" = true;
         AppleInterfaceStyle = "Dark";
-        AppleKeyboardUIMode = 3;
+        AppleKeyboardUIMode = 2;
         ApplePressAndHoldEnabled = false;
         InitialKeyRepeat = 15;
         KeyRepeat = 2;
@@ -115,6 +130,7 @@
         AppleScrollerPagingBehavior = true;
         AppleEnableMouseSwipeNavigateWithScrolls = true;
         AppleEnableSwipeNavigateWithScrolls = true;
+        AppleSpacesSwitchOnActivate = true;
 
         NSAutomaticCapitalizationEnabled = false;
         NSAutomaticDashSubstitutionEnabled = false;
@@ -129,45 +145,10 @@
       };
 
       # Customize settings that not supported by nix-darwin directly
-      # see the source code of this project to get more undocumented options:
-      #    https://github.com/rgcr/m-cli
-      # 
-      # All custom entries can be found by running `defaults read` command.
-      # or `defaults read xxx` to read a specific domain.
-      CustomUserPreferences = {
-        ".GlobalPreferences" = {
-          # automatically switch to a new space when switching to the application
-          AppleSpacesSwitchOnActivate = true;
-        };
-        NSGlobalDomain = {
-          # Add a context menu item for showing the Web Inspector in web views
-          WebKitDeveloperExtras = true;
-        };
-        "com.apple.finder" = {
-          ShowExternalHardDrivesOnDesktop = true;
-          ShowHardDrivesOnDesktop = true;
-          ShowMountedServersOnDesktop = true;
-          ShowRemovableMediaOnDesktop = true;
-          _FXSortFoldersFirst = true;
-          # When performing a search, search the current folder by default
-          FXDefaultSearchScope = "SCcf";
-        };
+      CustomSystemPreferences = {
         "com.apple.desktopservices" = {
-          # Avoid creating .DS_Store files on network or USB volumes
           DSDontWriteNetworkStores = true;
           DSDontWriteUSBStores = true;
-        };
-        "com.apple.WindowManager" = {
-          EnableStandardClickToShowDesktop = 0; # Click wallpaper to reveal desktop
-          StandardHideDesktopIcons = 0; # Show items on desktop
-          HideDesktop = 0; # Do not hide items on desktop & stage manager
-          StageManagerHideWidgets = 0;
-          StandardHideWidgets = 0;
-        };
-        "com.apple.screensaver" = {
-          # Require password immediately after sleep or screen saver begins
-          askForPassword = 1;
-          askForPasswordDelay = 0;
         };
         "com.apple.AdLib" = {
           allowApplePersonalizedAdvertising = false;
@@ -182,15 +163,8 @@
       };
     };
 
-    # keyboard settings is not very useful on macOS
-    # the most important thing is to remap option key to alt key globally,
-    # but it's not supported by macOS yet.
     keyboard = {
       enableKeyMapping = true;  # enable key mapping so that we can use `option` as `control`
-
-      # NOTE: do NOT support remap capslock to both control and escape at the same time
-      remapCapsLockToControl = false;  # remap caps lock to control, useful for emac users
-      remapCapsLockToEscape  = false;  # remap caps lock to escape, useful for vim users
     };
   };
 
@@ -208,9 +182,8 @@
     enableFzfGit = true;
     enableFzfHistory = true;
     promptInit = ''
-    fastfetch
-    source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-    source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
     '';
   };
 

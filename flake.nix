@@ -1,29 +1,21 @@
 {
-  description = "Nix for macOS configuration";
+  description = "Nix for Poby's MacOS";
 
-  ##################################################################################################################
-  #
-  # Want to know Nix in details? Looking for a beginner-friendly tutorial?
-  # Check out https://github.com/ryan4yin/nixos-and-flakes-book !
-  #
-  ##################################################################################################################
+  nixConfig = {
+    substituters = [ "https://cache.nixos.org" ];
+  };
 
-  # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
-  # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
-  inputs = {
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
+  inputs = let
+    stableVersion = "25.11";  # FIXME to bump to latest stable version
+  in {
+    # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # comment out for unstable version
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-${stableVersion}-darwin";
     darwin = {
-      url = "github:lnl7/nix-darwin";
+      url = "github:lnl7/nix-darwin/nix-darwin-${stableVersion}";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
   };
 
-  # The `outputs` function will return all the build results of the flake.
-  # A flake can have many use cases and different types of outputs,
-  # parameters in `outputs` are defined in `inputs` and can be referenced by their names.
-  # However, `self` is an exception, this special parameter points to the `outputs` itself (self-reference)
-  # The `@` syntax here is used to alias the attribute set of the inputs's parameter, making it convenient to use inside the function.
   outputs = inputs @ {
     self,
     nixpkgs,
@@ -32,7 +24,7 @@
   }: let
     username = "poby";
     system = "aarch64-darwin";
-    hostname = "pobys-macbook-pro";
+    hostname = "fenrir";  # TODO break down to multiple hosts
 
     specialArgs =
       inputs
@@ -49,7 +41,6 @@
         ./modules/host-users.nix
       ];
     };
-    # nix code formatter
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
   };
 }
