@@ -15,6 +15,8 @@
     ./zsh.nix
     ./eza.nix
     ./jq.nix
+    ./lazygit.nix
+    ./mise.nix
   ];
 
   home = {
@@ -22,9 +24,8 @@
     homeDirectory = "/Users/${username}";
     stateVersion = "25.11";
 
+    # packages that are not available via programs
     packages = with pkgs; [
-      tree
-      yq-go
       # nix-search-tv
       (writeShellApplication {
         name = "ns";

@@ -13,9 +13,8 @@
 
     shellAliases = {
       poby = "echo my name is poby";
-      nrs = "sudo nixos-rebuild switch --flake ~/nixos#$(hostname)";
-      nrt = "sudo nixos-rebuild test --flake ~/nixos#$(hostname)";
-      hms = "home-manager switch -b backup --flake ~/nixos#$(whoami)";
+      drs = "sudo darwin-rebuild switch --flake ~/nix-darwin#$(hostname)";
+      drt = "sudo darwin-rebuild test --flake ~/nix-darwin#$(hostname)";
     };
 
     sessionVariables = {

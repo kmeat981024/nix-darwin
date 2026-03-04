@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
     darwin = {
-      url = "github:lnl7/nix-darwin/nix-darwin-${stableVersion}";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-${stableVersion}";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 

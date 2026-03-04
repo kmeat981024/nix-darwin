@@ -5,6 +5,7 @@
     git
     neovim
     just # use Justfile to simplify nix-darwin's commands
+    tree
   ];
   environment.variables.EDITOR = "nvim";
 
@@ -26,15 +27,12 @@
     taps = [];
 
     # WARNING only include those not in nixpkgs
-    brews = [
-      # "neovim"
-      # "ripgrep"
-      # "fd"
-    ];
+    brews = [];
 
     casks = [
       "batfi"
       "hammerspoon"
+      # TODO use nixpkgs when possible
       # "google-chrome"
       # "iina"
       # "jordanbaird-ice"
@@ -42,17 +40,6 @@
       # "shottr"
       # "raycast"
       # "stats"
-
-      # Fonts
-      "font-fontawesome"
-      "font-jetbrains-mono-nerd-font"
-      "font-meslo-lg-nerd-font"
-      "font-d2coding"
-      "font-fira-code-nerd-font"
-      "font-symbols-only-nerd-font"
-      "font-material-design-icons-webfont"
-      "font-pretendard"
-      "font-maple-mono-nf"
     ];
   };
 }
