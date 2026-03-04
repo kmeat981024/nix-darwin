@@ -1,5 +1,8 @@
-{ username, hostname, ... }:
 {
+  username,
+  hostname,
+  ...
+}: {
   networking.hostName = hostname;
   networking.computerName = hostname;
 
@@ -8,5 +11,5 @@
     description = username;
   };
 
-  nix.settings.trusted-users = [ username ];
+  nix.settings.trusted-users = [username];
 }

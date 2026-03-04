@@ -1,6 +1,12 @@
-{ pkgs, config, username, hostname, ... }:
-
 {
+  pkgs,
+  config,
+  username,
+  hostname,
+  ...
+}: {
+  time.timeZone = "Asia/Seoul";
+
   system = {
     primaryUser = username;
     stateVersion = 6;
@@ -32,7 +38,6 @@
       '';
 
     defaults = {
-
       loginwindow = {
         GuestEnabled = false;
       };
@@ -86,12 +91,12 @@
 
       trackpad = {
         Clicking = true;
-        TrackpadRightClick = true;  # two finger right click
+        TrackpadRightClick = true; # two finger right click
         TrackpadThreeFingerDrag = true;
-        TrackpadFourFingerHorizSwipeGesture = 2;  # swipe between full-screen applications
+        TrackpadFourFingerHorizSwipeGesture = 2; # swipe between full-screen applications
         TrackpadFourFingerVertSwipeGesture = 2; # down for Mission Control, up for App Expose
         TrackpadPinch = true;
-        TrackpadThreeFingerHorizSwipGesture = 0;  # disable for three finger drag
+        TrackpadThreeFingerHorizSwipGesture = 0; # disable for three finger drag
         TrackpadThreeFingerVertSwipeGesture = 0; # disable for three finger drag
         TrackpadTwoFingerDoubleTapGesture = true; # smart zoom
         TrackpadTwoFingerFromRightEdgeSwipeGesture = 0;
@@ -142,6 +147,7 @@
         NSTableViewDefaultSizeMode = 2;
 
         "com.apple.keyboard.fnState" = true;
+        "com.apple.sound.beep.feedback" = 0;
       };
 
       # Customize settings that not supported by nix-darwin directly
@@ -164,7 +170,7 @@
     };
 
     keyboard = {
-      enableKeyMapping = true;  # enable key mapping so that we can use `option` as `control`
+      enableKeyMapping = true; # enable key mapping so that we can use `option` as `control`
     };
   };
 
@@ -175,50 +181,60 @@
   # this is required if you want to use darwin's default shell - zsh
   programs.zsh = {
     enable = true;
-    enableCompletion = true;
-    enableAutosuggestions = true;
-    enableFastSyntaxHighlighting = true;
-    enableFzfCompletion = true;
-    enableFzfGit = true;
-    enableFzfHistory = true;
-    promptInit = ''
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-    '';
+    # enableCompletion = true;
+    # enableAutosuggestions = true;
+    # enableFastSyntaxHighlighting = true;
+    # enableFzfCompletion = true;
+    # enableFzfGit = true;
+    # enableFzfHistory = true;
+    # promptInit = ''
+    #   source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+    #   source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+    # '';
   };
 
   environment = {
     shells = [
       pkgs.zsh
     ];
-    shellAliases = {
-      ls = "lsd --color=auto";
-      l = "lsd -lhG";
-      lt = "l --tree";
-      ll = "lsd -alhG";
-      lh = "lsd -dl .*";
-      lsd = "lsd --group-directories-first";
-      filecount="find . -type f | wc -l";
-      cat = "bat --color=always";
-      man = "tldr";
-      nixrebuild = "sudo darwin-rebuild switch --flake ~/.config/nix-darwin";
-      nixupgrade = "cd ~/.config/nix-darwin && nix flake update";
-      nixconfig = "nvim ~/.config/nix-darwin";
-      sshconfig = "nvim ~/.ssh/config";
-
-      # git
-      g = "git";
-      gaa = "git add --all";
-      gcm = "git commit -m";
-      gca = "git commit --amend";
-      gst = "git status";
-      gco = "git checkout";
-      gl = "git pull";
-      gp = "git push";
-      glg = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short";
-    };
+    # shellAliases = {
+    #   ls = "lsd --color=auto";
+    #   l = "lsd -lhG";
+    #   lt = "l --tree";
+    #   ll = "lsd -alhG";
+    #   lh = "lsd -dl .*";
+    #   lsd = "lsd --group-directories-first";
+    #   filecount = "find . -type f | wc -l";
+    #   cat = "bat --color=always";
+    #   man = "tldr";
+    #   nixrebuild = "sudo darwin-rebuild switch --flake ~/.config/nix-darwin";
+    #   nixupgrade = "cd ~/.config/nix-darwin && nix flake update";
+    #   nixconfig = "nvim ~/.config/nix-darwin";
+    #   sshconfig = "nvim ~/.ssh/config";
+    #
+    #   # git
+    #   g = "git";
+    #   gaa = "git add --all";
+    #   gcm = "git commit -m";
+    #   gca = "git commit --amend";
+    #   gst = "git status";
+    #   gco = "git checkout";
+    #   gl = "git pull";
+    #   gp = "git push";
+    #   glg = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short";
+    # };
   };
 
-  # Set your time zone.
-  time.timeZone = "Asia/Seoul";
+  fonts = {
+    packages = with pkgs; [
+      material-design-icons
+      font-awesome
+      pretendard
+      nerd-fonts.symbols-only
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.d2coding
+      nerd-fonts.iosevka
+      nerd-fonts.meslo-lg
+    ];
+  };
 }

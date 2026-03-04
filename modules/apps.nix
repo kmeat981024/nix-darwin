@@ -1,11 +1,12 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
+  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     git
+    neovim
     just # use Justfile to simplify nix-darwin's commands
-    vim
-    curl
   ];
+  environment.variables.EDITOR = "nvim";
 
   homebrew = {
     enable = true;
@@ -22,7 +23,7 @@
       Bitwarden = 1352778147;
     };
 
-    taps = [ ];
+    taps = [];
 
     # WARNING only include those not in nixpkgs
     brews = [
