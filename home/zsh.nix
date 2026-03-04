@@ -9,6 +9,10 @@
     history = {
       size = 10000;
       save = 10000;
+      share = true;
+      ignoreAllDups = true;
+      ignoreDups = true;
+      ignoreSpace = true;
     };
 
     shellAliases = {

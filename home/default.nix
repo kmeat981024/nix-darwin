@@ -17,6 +17,9 @@
     ./jq.nix
     ./lazygit.nix
     ./mise.nix
+    ./ghostty.nix
+    ./bat.nix
+    # TODO ./aerospace.nix
   ];
 
   home = {
