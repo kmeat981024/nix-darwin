@@ -6,6 +6,8 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    defaultKeymap = "viins";
+
     history = {
       size = 10000;
       save = 10000;
@@ -17,8 +19,8 @@
 
     shellAliases = {
       poby = "echo my name is poby";
-      drs = "sudo darwin-rebuild switch --flake ~/nix-darwin#$(hostname)";
-      drt = "sudo darwin-rebuild test --flake ~/nix-darwin#$(hostname)";
+      drs = "sudo darwin-rebuild switch --flake ~/nix-darwin#$(hostname)";  # TODO change to just script
+      drt = "sudo darwin-rebuild test --flake ~/nix-darwin#$(hostname)";  # TODO change to just script
     };
 
     sessionVariables = {
@@ -30,9 +32,10 @@
       theme = "robbyrussell";
       plugins = [
         "git"
+        "gitignore"
         "history"
-        "zoxide"
-        "eza"
+        "sudo"
+        "vi-mode"
       ];
     };
   };

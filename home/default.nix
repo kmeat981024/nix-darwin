@@ -20,6 +20,7 @@
     ./ghostty.nix
     ./bat.nix
     ./aerospace.nix
+    # TODO ./pass.nix
   ];
 
   home = {
