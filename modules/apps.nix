@@ -6,6 +6,7 @@
     neovim
     just # use Justfile to simplify nix-darwin's commands
     tree
+    fastfetchMinimal
   ];
   environment.variables.EDITOR = "nvim";
 
