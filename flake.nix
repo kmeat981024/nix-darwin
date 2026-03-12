@@ -64,7 +64,6 @@
         ./modules/system.nix
         ./modules/apps.nix
         ./modules/host-users.nix
-        nvf.darwinModules.default
         agenix.darwinModules.default
         home-manager.darwinModules.home-manager
         {
@@ -73,6 +72,7 @@
             useUserPackages = true;
             backupFileExtension = "backup";
             extraSpecialArgs = specialArgs;
+            sharedModules = [ nvf.homeManagerModules.nvf ];
             users.${username} = import ./home;
           };
         }
