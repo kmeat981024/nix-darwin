@@ -13,7 +13,7 @@
   };
   extraDiagnostics = {
     enable = true;
-    types = ["markdownlint-cli2"];
+    types = [ "markdownlint-cli2" ];
   };
   format = {
     enable = true;
@@ -24,7 +24,7 @@
   };
   lsp = {
     enable = true;
-    servers = ["marksman"];
+    servers = [ "marksman" ];
   };
   treesitter.enable = true;
 }

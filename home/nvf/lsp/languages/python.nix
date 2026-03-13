@@ -3,11 +3,11 @@
   enable = true;
   format = {
     enable = true;
-    type = ["ruff"];
+    type = [ "ruff" ];
   };
   lsp = {
     enable = true;
-    servers = ["pyright"];
+    servers = [ "pyright" ];
   };
   treesitter.enable = true;
 }

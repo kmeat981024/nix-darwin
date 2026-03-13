@@ -3,7 +3,7 @@
   enable = true;
   extraDiagnostics = {
     enable = true;
-    types = ["htmlhint"];
+    types = [ "htmlhint" ];
   };
   format = {
     enable = true;
@@ -14,7 +14,7 @@
   };
   lsp = {
     enable = true;
-    servers = ["superhtml"];
+    servers = [ "superhtml" ];
   };
   treesitter = {
     enable = true;

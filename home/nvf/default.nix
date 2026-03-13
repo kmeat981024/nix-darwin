@@ -1,6 +1,7 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   options = import ./core/options.nix;
-  autocmds = import ./core/autocmds.nix {inherit lib;};
+  autocmds = import ./core/autocmds.nix { inherit lib; };
   augroups = import ./core/augroups.nix;
   keymaps = import ./core/keymaps.nix;
   fzf-lua = import ./plugins/fzf-lua.nix;
@@ -13,7 +14,8 @@
   treesitter = import ./lsp/treesitter.nix;
   autocomplete = import ./lsp/autocomplete.nix;
   languages = import ./lsp/languages;
-in {
+in
+{
   programs.nvf = {
     enable = true;
 

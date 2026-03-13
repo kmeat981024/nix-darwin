@@ -34,9 +34,7 @@
     casks = [
       "batfi"
       "hammerspoon"
-      # TODO use nixpkgs when possible
-      # "google-chrome"
-      "shottr"
+      "shottr" # stable version dmg link not found
     ];
   };
 }

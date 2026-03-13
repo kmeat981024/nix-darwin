@@ -3,6 +3,6 @@
     enable = true;
     enableZshIntegration = true;
     enableBashIntegration = true;
-    options = ["--cmd j"];
+    options = [ "--cmd j" ];
   };
 }

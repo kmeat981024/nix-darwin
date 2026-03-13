@@ -17,7 +17,7 @@
   };
   lsp = {
     enable = true;
-    servers = ["nil"];
+    servers = [ "nil" ];
   };
   treesitter.enable = true;
 }

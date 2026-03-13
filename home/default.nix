@@ -21,11 +21,15 @@
     ./terminal.nix
     ./bat.nix
     ./aerospace.nix
+    # TODO ./browser.nix
     # TODO ./pass.nix
+    # TODO ./claude-code.nix
+    # TODO ./codex.nix
+    # TODO ./gemini-cli.nix
   ];
 
   home = {
-    username = username;
+    inherit username;
     homeDirectory = "/Users/${username}";
     stateVersion = "25.11";
 

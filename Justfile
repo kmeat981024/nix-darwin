@@ -1,6 +1,6 @@
 # just is a command runner, Justfile is very similar to Makefile, but simpler.
 
-# TODO update hostname here!
+# FIXME update hostname here!
 hostname := "fenrir"
 
 # List all the just commands

@@ -1,8 +1,9 @@
-{lib, ...}: [
+{ lib, ... }:
+[
   # autocmds
   {
     enable = true;
-    event = ["BufReadPost"];
+    event = [ "BufReadPost" ];
     desc = "Return to last cursor position";
     group = "LastCursorGroup";
     callback = lib.generators.mkLuaInline ''
@@ -17,10 +18,10 @@
   }
   {
     enable = true;
-    event = ["TextYankPost"];
+    event = [ "TextYankPost" ];
     desc = "Highlight yanks on copy";
     group = "HighlightYank";
-    pattern = ["*"];
+    pattern = [ "*" ];
     callback = lib.generators.mkLuaInline ''
       function()
         vim.hl.on_yank({
