@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
@@ -25,22 +26,17 @@
       Bitwarden = 1352778147;
     };
 
-    taps = [];
+    taps = [ ];
 
     # WARNING only include those not in nixpkgs
-    brews = [];
+    brews = [ ];
 
     casks = [
       "batfi"
       "hammerspoon"
       # TODO use nixpkgs when possible
       # "google-chrome"
-      # "iina"
-      # "jordanbaird-ice"
-      # "keka"
-      # "shottr"
-      # "raycast"
-      # "stats"
+      "shottr"
     ];
   };
 }

@@ -46,11 +46,13 @@
       };
 
       controlcenter = {
-        Sound = false;
-        Bluetooth = false;
         AirDrop = false;
+        BatteryShowPercentage = false;
+        Bluetooth = false;
         Display = false;
+        FocusModes = false;
         NowPlaying = false;
+        Sound = false;
       };
 
       menuExtraClock = {
