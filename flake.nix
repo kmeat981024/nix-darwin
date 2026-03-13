@@ -1,27 +1,39 @@
 {
   description = "Nix for Poby's MacOS";
 
-  nixConfig = {
-    substituters = [
-      "https://nix-community.cachix.org"
-      "https://cache.nixos.org"
-    ];
-  };
+  # TODO: is this necessary?
+  # nixConfig = {
+  #   substituters = [
+  #     "https://nix-community.cachix.org"
+  #     "https://cache.nixos.org"
+  #   ];
+  # };
 
-  inputs = let
-    stableVersion = "25.11"; # FIXME to bump to latest stable version
-  in {
+  inputs = {
     # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # comment out for unstable version
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-${stableVersion}-darwin";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-${stableVersion}";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
     darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-${stableVersion}";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
+
+    # Homebrew
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    # Optional: Declarative tap management
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
     };
 
     # NVF for neovim
@@ -34,7 +46,7 @@
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
-    }
+    };
   };
 
   outputs = inputs @ {
@@ -44,6 +56,9 @@
     home-manager,
     nvf,
     agenix,
+    nix-homebrew,
+    homebrew-core,
+    homebrew-cask,
     ...
   }: let
     system = "aarch64-darwin";
@@ -64,6 +79,22 @@
         ./modules/system.nix
         ./modules/apps.nix
         ./modules/host-users.nix
+        nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            enable = true;
+            enableRosetta = true;
+            user = username;
+            taps = {
+              "homebrew/homebrew-core" = homebrew-core;
+              "homebrew/homebrew-cask" = homebrew-cask;
+            };
+            mutableTaps = false;
+          };
+        }
+        ({config, ...}: {
+          homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+        })
         agenix.darwinModules.default
         home-manager.darwinModules.home-manager
         {

@@ -1,7 +1,7 @@
 {
   programs.eza = {
     enable = true;
-    color = "auto";
+    colors = "auto";
     git = true;
     icons = "auto";
     enableZshIntegration = true;

@@ -13,13 +13,13 @@
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
-      builders-user-substitutes = true;
+      builders-use-substitutes = true;
       auto-optimise-store = false; # issue https://github.com/NixOS/nix/issues/7273
     };
-  };
 
-  gc = {
-    automatic = lib.mkDefault true;
-    options = lib.mkDefault "--delete-older-than 7d";
+    gc = {
+      automatic = lib.mkDefault true;
+      options = lib.mkDefault "--delete-older-than 7d";
+    };
   };
 }

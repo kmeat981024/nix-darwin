@@ -4,7 +4,8 @@
   username,
   hostname,
   ...
-}: {
+}:
+{
   time.timeZone = "Asia/Seoul";
 
   system = {
@@ -18,13 +19,14 @@
       sudo -u ${username} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
 
-    activationScripts.applications.text = let
-      env = pkgs.buildEnv {
-        name = "system-applications";
-        paths = config.environment.systemPackages;
-        pathsToLink = "/Applications";
-      };
-    in
+    activationScripts.applications.text =
+      let
+        env = pkgs.buildEnv {
+          name = "system-applications";
+          paths = config.environment.systemPackages;
+          pathsToLink = [ "/Applications" ];
+        };
+      in
       pkgs.lib.mkForce ''
         # Set up applications.
         echo "setting up /Applications..." >&2
@@ -97,7 +99,7 @@
         TrackpadFourFingerHorizSwipeGesture = 2; # swipe between full-screen applications
         TrackpadFourFingerVertSwipeGesture = 2; # down for Mission Control, up for App Expose
         TrackpadPinch = true;
-        TrackpadThreeFingerHorizSwipGesture = 0; # disable for three finger drag
+        TrackpadThreeFingerHorizSwipeGesture = 0; # disable for three finger drag
         TrackpadThreeFingerVertSwipeGesture = 0; # disable for three finger drag
         TrackpadTwoFingerDoubleTapGesture = true; # smart zoom
         TrackpadTwoFingerFromRightEdgeSwipeGesture = 0;
