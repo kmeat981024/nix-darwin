@@ -19,8 +19,8 @@
 
     shellAliases = {
       poby = "echo my name is poby";
-      drs = "sudo darwin-rebuild switch --flake ~/nix-darwin#$(hostname)";  # TODO change to just script
-      drt = "sudo darwin-rebuild test --flake ~/nix-darwin#$(hostname)";  # TODO change to just script
+      drs = "sudo darwin-rebuild switch --flake ~/nix-darwin#$(hostname)"; # TODO change to just script
+      drt = "sudo darwin-rebuild test --flake ~/nix-darwin#$(hostname)"; # TODO change to just script
     };
 
     sessionVariables = {
@@ -36,6 +36,8 @@
         "history"
         "sudo"
         "vi-mode"
+        "zoxide"
+        "eza"
       ];
     };
   };
