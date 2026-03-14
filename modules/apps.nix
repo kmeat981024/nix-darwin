@@ -1,4 +1,11 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  username,
+  homebrew-core,
+  homebrew-cask,
+  ...
+}:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -10,6 +17,17 @@
     fastfetchMinimal
   ];
   environment.variables.EDITOR = "nvim";
+
+  nix-homebrew = {
+    enable = true;
+    enableRosetta = true;
+    user = username;
+    taps = {
+      "homebrew/homebrew-core" = homebrew-core;
+      "homebrew/homebrew-cask" = homebrew-cask;
+    };
+    mutableTaps = false;
+  };
 
   homebrew = {
     enable = true;
@@ -26,7 +44,7 @@
       Bitwarden = 1352778147;
     };
 
-    taps = [ ];
+    taps = builtins.attrNames config.nix-homebrew.taps;
 
     # WARNING only include those not in nixpkgs
     brews = [ ];
