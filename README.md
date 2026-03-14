@@ -1,5 +1,7 @@
 # nix-darwin
 
+[한국어](README-ko.md)
+
 Declarative macOS setup for host `fenrir` using `nix-darwin`, `home-manager`,
 `nix-homebrew`, and `sops-nix`.
 
