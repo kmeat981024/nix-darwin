@@ -19,8 +19,8 @@
 
     shellAliases = {
       poby = "echo my name is poby";
-      drs = "sudo darwin-rebuild switch --flake ~/nix-darwin#$(hostname)"; # TODO change to just script
-      drt = "sudo darwin-rebuild test --flake ~/nix-darwin#$(hostname)"; # TODO change to just script
+      nixconfig = "cd ~/nix-darwin && vim flake.nix";
+      just-darwin = "cd ~/nix-darwin && just darwin";
     };
 
     sessionVariables = {
