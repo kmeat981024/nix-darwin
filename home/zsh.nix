@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -27,6 +28,10 @@
       EDITOR = "nvim";
     };
 
+    initContent = ''
+      export GH_TOKEN="$(cat ${config.sops.secrets."github_cli_token".path})"
+    '';
+
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
@@ -38,6 +43,7 @@
         "vi-mode"
         "zoxide"
         "eza"
+        "mise"
       ];
     };
   };

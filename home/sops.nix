@@ -7,6 +7,7 @@
 
     secrets = {
       "github_ssh_key" = { };
+      "github_cli_token" = { };
     };
   };
 }
