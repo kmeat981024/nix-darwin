@@ -21,8 +21,8 @@
     ./terminal.nix
     ./bat.nix
     ./aerospace.nix
-    # TODO ./browser.nix
-    # TODO ./pass.nix
+    ./sops.nix
+    ./ssh.nix
     # TODO ./claude-code.nix
     # TODO ./codex.nix
     # TODO ./gemini-cli.nix

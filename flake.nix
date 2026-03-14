@@ -42,9 +42,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # TODO: agenix for secrets
-    agenix = {
-      url = "github:ryantm/agenix";
+    # sops-nix for secrets
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
   };
@@ -56,7 +56,7 @@
       darwin,
       home-manager,
       nvf,
-      agenix,
+      sops-nix,
       nix-homebrew,
       homebrew-core,
       homebrew-cask,
@@ -99,7 +99,6 @@
               homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
             }
           )
-          agenix.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager = {
@@ -107,7 +106,10 @@
               useUserPackages = true;
               backupFileExtension = "backup";
               extraSpecialArgs = specialArgs;
-              sharedModules = [ nvf.homeManagerModules.nvf ];
+              sharedModules = [
+                nvf.homeManagerModules.nvf
+                sops-nix.homeManagerModules.sops
+              ];
               users.${username} = import ./home;
             };
           }

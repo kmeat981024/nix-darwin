@@ -1,4 +1,8 @@
-{ lib, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 let
   options = import ./core/options.nix;
   autocmds = import ./core/autocmds.nix { inherit lib; };
@@ -11,7 +15,7 @@ let
   terminal = import ./plugins/terminal.nix;
   theme = import ./appearance/theme.nix;
   lsp = import ./lsp/lsp.nix;
-  treesitter = import ./lsp/treesitter.nix;
+  treesitter = import ./lsp/treesitter.nix { inherit pkgs; };
   autocomplete = import ./lsp/autocomplete.nix;
   languages = import ./lsp/languages;
 in
