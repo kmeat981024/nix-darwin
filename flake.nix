@@ -1,43 +1,75 @@
 {
-  description = "Nix for macOS configuration";
+  description = "Nix for Poby's MacOS";
 
-  ##################################################################################################################
-  #
-  # Want to know Nix in details? Looking for a beginner-friendly tutorial?
-  # Check out https://github.com/ryan4yin/nixos-and-flakes-book !
-  #
-  ##################################################################################################################
+  # TODO: is this necessary?
+  # nixConfig = {
+  #   substituters = [
+  #     "https://nix-community.cachix.org"
+  #     "https://cache.nixos.org"
+  #   ];
+  # };
 
-  # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
-  # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
+    # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # comment out for unstable version
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
+
     darwin = {
-      url = "github:lnl7/nix-darwin";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
+
+    # Homebrew
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    # Optional: Declarative tap management
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+
+    # NVF for neovim
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # sops-nix for secrets
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
   };
 
-  # The `outputs` function will return all the build results of the flake.
-  # A flake can have many use cases and different types of outputs,
-  # parameters in `outputs` are defined in `inputs` and can be referenced by their names.
-  # However, `self` is an exception, this special parameter points to the `outputs` itself (self-reference)
-  # The `@` syntax here is used to alias the attribute set of the inputs's parameter, making it convenient to use inside the function.
   outputs = inputs @ {
     self,
     nixpkgs,
     darwin,
+    home-manager,
+    nvf,
+    sops-nix,
+    nix-homebrew,
+    homebrew-core,
+    homebrew-cask,
     ...
   }: let
-    username = "poby";
     system = "aarch64-darwin";
-    hostname = "pobys-macbook-pro";
+    username = "poby";
+    useremail = "smg981024@gmail.com";
+    hostname = "fenrir"; # TODO break down to multiple hosts
 
     specialArgs =
       inputs
       // {
-        inherit username hostname;
+        inherit username useremail hostname;
       };
   in {
     darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
@@ -47,9 +79,23 @@
         ./modules/system.nix
         ./modules/apps.nix
         ./modules/host-users.nix
+        nix-homebrew.darwinModules.nix-homebrew
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "backup";
+            extraSpecialArgs = specialArgs;
+            sharedModules = [
+              nvf.homeManagerModules.nvf
+              sops-nix.homeManagerModules.sops
+            ];
+            users.${username} = import ./home;
+          };
+        }
       ];
     };
-    # nix code formatter
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
   };
 }
