@@ -10,10 +10,7 @@
   };
   format = {
     enable = true;
-    type = [
-      "alejandra"
-      "nixfmt"
-    ];
+    type = [ "alejandra" ];
   };
   lsp = {
     enable = true;

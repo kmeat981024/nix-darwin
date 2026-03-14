@@ -1,8 +1,5 @@
 # just is a command runner, Justfile is very similar to Makefile, but simpler.
 
-# FIXME update hostname here!
-hostname := "fenrir"
-
 # List all the just commands
 default:
   @just --list
@@ -14,14 +11,14 @@ default:
 ############################################################################
 
 [group('desktop')]
-darwin:
+darwin hostname:
   nix build .#darwinConfigurations.{{hostname}}.system \
     --extra-experimental-features 'nix-command flakes'
 
   sudo -E ./result/sw/bin/darwin-rebuild switch --flake .#{{hostname}}
 
 [group('desktop')]
-darwin-debug:
+darwin-debug hostname:
   nix build .#darwinConfigurations.{{hostname}}.system --show-trace --verbose \
     --extra-experimental-features 'nix-command flakes'
 
@@ -70,9 +67,9 @@ gc:
   nix-collect-garbage --delete-older-than 7d
 
 [group('nix')]
-fmt:
+fmt range:
   # format the nix files in this repo
-  nix fmt
+  nix fmt {{range}}
 
 # Show all the auto gc roots in the nix store
 [group('nix')]
