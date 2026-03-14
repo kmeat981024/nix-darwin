@@ -47,13 +47,17 @@
     taps = builtins.attrNames config.nix-homebrew.taps;
 
     # WARNING only include those not in nixpkgs
-    brews = [ ];
+    brews = [
+      "gemini-cli"
+    ];
 
     casks = [
       "batfi"
       "hammerspoon"
       "shottr" # stable version dmg link not found
       "arc"
+      "codex"
+      "claude-code"
     ];
   };
 }

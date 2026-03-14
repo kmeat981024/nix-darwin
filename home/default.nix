@@ -23,9 +23,6 @@
     ./aerospace.nix
     ./sops.nix
     ./ssh.nix
-    # TODO ./claude-code.nix
-    # TODO ./codex.nix
-    # TODO ./gemini-cli.nix
   ];
 
   home = {
