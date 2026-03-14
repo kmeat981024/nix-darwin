@@ -10,11 +10,11 @@
   };
   format = {
     enable = true;
-    type = [ "alejandra" ];
+    type = ["alejandra"];
   };
   lsp = {
     enable = true;
-    servers = [ "nil" ];
+    servers = ["nil"];
   };
   treesitter.enable = true;
 }

@@ -6,6 +6,7 @@
       tools = {
         node = "lts";
         uv = "latest";
+        python = "3.13";
       };
       settings = {
         experimental = true;

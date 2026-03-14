@@ -49,54 +49,53 @@
     };
   };
 
-  outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      darwin,
-      home-manager,
-      nvf,
-      sops-nix,
-      nix-homebrew,
-      homebrew-core,
-      homebrew-cask,
-      ...
-    }:
-    let
-      system = "aarch64-darwin";
-      username = "poby";
-      useremail = "smg981024@gmail.com";
-      hostname = "fenrir"; # TODO break down to multiple hosts
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    darwin,
+    home-manager,
+    nvf,
+    sops-nix,
+    nix-homebrew,
+    homebrew-core,
+    homebrew-cask,
+    ...
+  }: let
+    system = "aarch64-darwin";
+    username = "poby";
+    useremail = "smg981024@gmail.com";
+    hostname = "fenrir"; # TODO break down to multiple hosts
 
-      specialArgs = inputs // {
+    specialArgs =
+      inputs
+      // {
         inherit username useremail hostname;
       };
-    in
-    {
-      darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
-        inherit system specialArgs;
-        modules = [
-          ./modules/nix-core.nix
-          ./modules/system.nix
-          ./modules/apps.nix
-          ./modules/host-users.nix
-          nix-homebrew.darwinModules.nix-homebrew
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "backup";
-              extraSpecialArgs = specialArgs;
-              sharedModules = [
-                nvf.homeManagerModules.nvf
-                sops-nix.homeManagerModules.sops
-              ];
-              users.${username} = import ./home;
-            };
-          }
-        ];
-      };
-      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+  in {
+    darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
+      inherit system specialArgs;
+      modules = [
+        ./modules/nix-core.nix
+        ./modules/system.nix
+        ./modules/apps.nix
+        ./modules/host-users.nix
+        nix-homebrew.darwinModules.nix-homebrew
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "backup";
+            extraSpecialArgs = specialArgs;
+            sharedModules = [
+              nvf.homeManagerModules.nvf
+              sops-nix.homeManagerModules.sops
+            ];
+            users.${username} = import ./home;
+          };
+        }
+      ];
     };
+    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+  };
 }

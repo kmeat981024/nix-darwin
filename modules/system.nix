@@ -4,8 +4,7 @@
   username,
   hostname,
   ...
-}:
-{
+}: {
   time.timeZone = "Asia/Seoul";
 
   system = {
@@ -19,14 +18,13 @@
       sudo -u ${username} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
 
-    activationScripts.applications.text =
-      let
-        env = pkgs.buildEnv {
-          name = "system-applications";
-          paths = config.environment.systemPackages;
-          pathsToLink = [ "/Applications" ];
-        };
-      in
+    activationScripts.applications.text = let
+      env = pkgs.buildEnv {
+        name = "system-applications";
+        paths = config.environment.systemPackages;
+        pathsToLink = ["/Applications"];
+      };
+    in
       pkgs.lib.mkForce ''
         # Set up applications.
         echo "setting up /Applications..." >&2

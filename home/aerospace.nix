@@ -6,7 +6,7 @@
       accordion-padding = 10;
       default-root-container-layout = "tiles";
       default-root-container-orientation = "auto";
-      on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
+      on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
       automatically-unhide-macos-hidden-apps = false;
       # persistent-workspaces = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
 

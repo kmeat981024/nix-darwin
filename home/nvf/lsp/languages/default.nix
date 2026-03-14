@@ -6,8 +6,7 @@ let
   markdown = import ./markdown.nix;
   html = import ./html.nix;
   yaml = import ./yaml.nix;
-in
-{
+in {
   inherit
     nix
     python

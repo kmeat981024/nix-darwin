@@ -3,15 +3,15 @@
   enable = true;
   extraDiagnostics = {
     enable = true;
-    types = [ "shellcheck" ];
+    types = ["shellcheck"];
   };
   format = {
     enable = true;
-    type = [ "shfmt" ];
+    type = ["shfmt"];
   };
   lsp = {
     enable = true;
-    servers = [ "bash-ls" ];
+    servers = ["bash-ls"];
   };
   treesitter.enable = true;
 }

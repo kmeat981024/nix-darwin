@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   programs.zsh = {
     enable = true;
 
@@ -21,7 +20,7 @@
     shellAliases = {
       poby = "echo my name is poby";
       nixconfig = "cd ~/nix-darwin && vim flake.nix";
-      just-darwin = "cd ~/nix-darwin && just darwin";
+      just-darwin = "cd ~/nix-darwin && just darwin $(hostname)";
     };
 
     sessionVariables = {

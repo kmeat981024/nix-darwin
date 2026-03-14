@@ -2,10 +2,9 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   options = import ./core/options.nix;
-  autocmds = import ./core/autocmds.nix { inherit lib; };
+  autocmds = import ./core/autocmds.nix {inherit lib;};
   augroups = import ./core/augroups.nix;
   keymaps = import ./core/keymaps.nix;
   fzf-lua = import ./plugins/fzf-lua.nix;
@@ -15,11 +14,10 @@ let
   terminal = import ./plugins/terminal.nix;
   theme = import ./appearance/theme.nix;
   lsp = import ./lsp/lsp.nix;
-  treesitter = import ./lsp/treesitter.nix { inherit pkgs; };
+  treesitter = import ./lsp/treesitter.nix {inherit pkgs;};
   autocomplete = import ./lsp/autocomplete.nix;
   languages = import ./lsp/languages;
-in
-{
+in {
   programs.nvf = {
     enable = true;
 
