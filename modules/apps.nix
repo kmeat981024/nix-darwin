@@ -35,6 +35,7 @@
       "batfi"
       "hammerspoon"
       "shottr" # stable version dmg link not found
+      "arc"
     ];
   };
 }
