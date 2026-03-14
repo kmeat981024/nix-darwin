@@ -6,27 +6,17 @@
       accordion-padding = 10;
       default-root-container-layout = "tiles";
       default-root-container-orientation = "auto";
-      on-focus-monitor-changed = [ "move-mouse monitor-lazy-center" ];
+      on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
       automatically-unhide-macos-hidden-apps = false;
-      persistent-workspaces = [
-        "1"
-        "2"
-        "3"
-        "4"
-        "5"
-        "6"
-        "7"
-        "8"
-        "9"
-      ];
+      # persistent-workspaces = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
 
-      keymapping = {
+      key-mapping = {
         preset = "qwerty";
       };
 
       gaps = {
-        inner.horizontal = 0;
-        inner.vertical = 0;
+        inner.horizontal = 3;
+        inner.vertical = 3;
         outer.left = 3;
         outer.bottom = 3;
         outer.top = 3;

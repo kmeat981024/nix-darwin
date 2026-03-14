@@ -5,7 +5,8 @@ config = wezterm.config_builder()
 config = {
 	-- Windows
 	automatically_reload_config = true,
-	enable_tab_bar = false,
+	use_fancy_tab_bar = true,
+	hide_tab_bar_if_only_one_tab = true,
 	window_close_confirmation = "NeverPrompt",
 	window_decorations = "RESIZE", -- disable title bar, enable resize
 	default_cursor_style = "BlinkingBar",
@@ -23,8 +24,8 @@ config = {
 		},
 	},
 	window_padding = {
-		left = 2,
-		right = 2,
+		left = 0,
+		right = 0,
 		top = 0,
 		bottom = 0,
 	},
