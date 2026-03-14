@@ -1,0 +1,4 @@
+interface:
+  display_name: "README Writer"
+  short_description: "Draft and update repository README files"
+  default_prompt: "Use $readme to create or update README.md for this repository after showing a draft and requesting confirmation."
