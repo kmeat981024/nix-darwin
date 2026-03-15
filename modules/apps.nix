@@ -57,6 +57,13 @@
       "arc"
       "codex"
       "claude-code"
+      "telegram"
+      "raycast"
+      "jordanbaird-ice"
+      "keka"
+      "kekaexternalhelper"
+      "stats"
+      "iina"
     ];
   };
 }

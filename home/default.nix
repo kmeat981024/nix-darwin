@@ -29,14 +29,8 @@
     homeDirectory = "/Users/${username}";
     stateVersion = "25.11";
 
-    # packages that are not available via programs
-    packages = with pkgs; [
-      raycast
-      ice-bar
-      keka
-      stats
-      iina
-    ];
+    # packages that are not available via programs and does not need regular updates
+    packages = with pkgs; [];
   };
 
   programs.home-manager.enable = true;
