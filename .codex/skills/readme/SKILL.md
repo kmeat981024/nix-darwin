@@ -14,7 +14,7 @@ useful, project-specific content.
 ## Workflow
 
 1. Inspect repository facts before writing. Use targeted reads of `flake.nix`,
-   `Justfile`, `home/`, `modules/`, and `secrets/` plus recent git history. Do
+   `Justfile`, `home/`, `hosts/`, and `secrets/` plus recent git history. Do
    not invent commands, tools, or directory names.
 
 2. Select target file and language. Default target is `README.md` in English. If
@@ -40,7 +40,7 @@ useful, project-specific content.
 
 - Title and short description
 - Prerequisites (Nix/macOS assumptions when relevant)
-- Repository layout (`home/`, `modules/`, `secrets/`, root files)
+- Repository layout (`home/`, `hosts/`, `secrets/`, root files)
 - Key commands (`just darwin`, `just darwin-debug`, `just fmt`, update/cleanup
   commands)
 - Configuration and secrets notes (`.sops.yaml`, `secrets/*.yaml`)
