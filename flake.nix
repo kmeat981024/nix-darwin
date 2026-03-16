@@ -57,8 +57,6 @@
     nvf,
     sops-nix,
     nix-homebrew,
-    homebrew-core,
-    homebrew-cask,
     ...
   }: let
     system = "aarch64-darwin";
@@ -75,10 +73,7 @@
     darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
       inherit system specialArgs;
       modules = [
-        ./modules/nix-core.nix
-        ./modules/system.nix
-        ./modules/apps.nix
-        ./modules/host-users.nix
+        ./hosts
         nix-homebrew.darwinModules.nix-homebrew
         home-manager.darwinModules.home-manager
         {
