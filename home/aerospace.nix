@@ -88,7 +88,7 @@
         ];
 
         alt-tab = "workspace-back-and-forth";
-        alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
+        alt-shift-tab = "move-node-to-monitor --wrap-around next";
 
         alt-shift-semicolon = "mode service";
       };
@@ -141,6 +141,51 @@
         "8" = "main";
         "9" = "main";
       };
+
+      on-window-detected = [
+        {
+          "if" = {
+            app-id = "com.apple.finder";
+          };
+          check-further-callbacks = true;
+          run = ["layout floating"];
+        }
+        {
+          "if" = {
+            app-id = "com.apple.Notes";
+          };
+          check-further-callbacks = true;
+          run = ["layout floating"];
+        }
+        {
+          "if" = {
+            app-id = "com.daymore.Across";
+          };
+          check-further-callbacks = true;
+          run = ["layout floating"];
+        }
+        {
+          "if" = {
+            app-id = "com.bitwarden.desktop";
+          };
+          check-further-callbacks = true;
+          run = ["layout floating"];
+        }
+        {
+          "if" = {
+            app-id = "org.hammerspoon.Hammerspoon";
+          };
+          check-further-callbacks = true;
+          run = ["layout floating"];
+        }
+        {
+          "if" = {
+            app-id = "com.utmapp.UTM";
+          };
+          check-further-callbacks = true;
+          run = ["layout floating"];
+        }
+      ];
     };
   };
 }

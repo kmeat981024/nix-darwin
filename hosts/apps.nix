@@ -64,6 +64,7 @@
       "kekaexternalhelper"
       "stats"
       "iina"
+      "utm"
     ];
   };
 }

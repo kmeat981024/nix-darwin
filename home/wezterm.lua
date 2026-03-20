@@ -14,7 +14,7 @@ config = {
 	-- Appearance
 	color_scheme = "Tokyo Night",
 	font = wezterm.font("D2CodingLigature Nerd Font"),
-	font_size = 16,
+	font_size = 18,
 	background = {
 		{
 			source = { Color = "#282c35" },
@@ -28,6 +28,15 @@ config = {
 		right = 0,
 		top = 0,
 		bottom = 0,
+	},
+
+	-- Keymappings
+	keys = {
+		{
+			key = "P",
+			mods = "SUPER",
+			action = wezterm.action.ActivateCommandPalette,
+		},
 	},
 }
 
