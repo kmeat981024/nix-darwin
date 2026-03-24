@@ -1,0 +1,34 @@
+prefix_rule(
+  pattern = ["just"],
+  decision = "allow",
+  justification = "Executing Justfile commands is allowed",
+  match = [
+    "just",
+    "just darwin",
+    "just darwin-debug",
+  ],
+)
+
+prefix_rule(
+  pattern = ["git"],
+  decision = "allow",
+  justification = "Git is allowed",
+  match = [
+    "git add .",
+    "git commit -m",
+    "git worktree",
+    "git status",
+    "git log",
+    "git branch",
+  ],
+)
+
+prefix_rule(
+  pattern = ["gh"],
+  decision = "allow",
+  justification = "Github CLI is allowed",
+  match = [
+    "gh pr",
+    "gh repo",
+  ],
+)
