@@ -95,3 +95,4 @@ just gc
 ## Milestone
 
 - [ ] `multi-host implementation`
+- [ ] Dentritic Pattern - using flake-parts
