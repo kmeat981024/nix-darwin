@@ -6,6 +6,8 @@ let
   markdown = import ./markdown.nix;
   html = import ./html.nix;
   yaml = import ./yaml.nix;
+  toml = import ./toml.nix;
+  just = import ./just.nix;
 in {
   inherit
     nix
@@ -15,5 +17,7 @@ in {
     markdown
     html
     yaml
+    toml
+    just
     ;
 }
