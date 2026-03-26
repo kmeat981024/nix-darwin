@@ -78,4 +78,46 @@
     action = "<Cmd>Oil --float<CR>";
     desc = "Open Current Directory";
   }
+  {
+    key = "n";
+    mode = "n";
+    action = "nzzzv";
+    desc = "Next search result (centered)";
+  }
+  {
+    key = "N";
+    mode = "n";
+    action = "Nzzzv";
+    desc = "Previous search result (centered)";
+  }
+  {
+    key = "<C-d>";
+    mode = "n";
+    action = "<C-d>zz";
+    desc = "Half page down (centered)";
+  }
+  {
+    key = "<C-u>";
+    mode = "n";
+    action = "<C-u>zz";
+    desc = "Half page up (centered)";
+  }
+  {
+    key = "<";
+    mode = "v";
+    action = "<gv";
+    desc = "Indent left and reselect";
+  }
+  {
+    key = ">";
+    mode = "v";
+    action = ">gv";
+    desc = "Indent right and reselect";
+  }
+  {
+    key = "J";
+    mode = "n";
+    action = "mzJ`z";
+    desc = "Join lines and keep cursor position";
+  }
 ]

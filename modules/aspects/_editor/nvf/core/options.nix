@@ -9,4 +9,15 @@
   termguicolors = true;
   splitbelow = true;
   splitright = true;
+
+  # NVF unofficial
+  scrolloff = 10;
+  sidescrolloff = 8;
+  softtabstop = 2;
+  smartindent = true;
+  ignorecase = true;
+  smartcase = true;
+  foldmethod = "expr";
+  foldexpr = "v:lua.vim.treesitter.foldexpr()";
+  foldlevel = 99;
 }
