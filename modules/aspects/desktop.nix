@@ -110,6 +110,11 @@
             check-further-callbacks = true;
             run = ["layout floating"];
           }
+          {
+            "if".app-id = "com.apple.MobileSMS";
+            check-further-callbacks = true;
+            run = ["layout floating"];
+          }
         ];
       };
     };
