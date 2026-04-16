@@ -115,6 +115,11 @@
             check-further-callbacks = true;
             run = ["layout floating"];
           }
+          {
+            "if".app-id = "cc.ffitch.shottr";
+            check-further-callbacks = true;
+            run = ["layout floating"];
+          }
         ];
       };
     };

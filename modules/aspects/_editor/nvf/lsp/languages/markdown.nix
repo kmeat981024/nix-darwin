@@ -24,7 +24,7 @@
   };
   lsp = {
     enable = true;
-    servers = ["marksman"];
+    servers = ["markdown-oxide"]; # https://github.com/NotAShelf/nvf/discussions/1389
   };
   treesitter.enable = true;
 }

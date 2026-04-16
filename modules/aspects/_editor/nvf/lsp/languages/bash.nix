@@ -11,7 +11,7 @@
   };
   lsp = {
     enable = true;
-    servers = ["bash-ls"];
+    servers = ["bash-language-server"];
   };
   treesitter.enable = true;
 }
