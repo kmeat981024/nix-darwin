@@ -1,6 +1,6 @@
 {
   programs.mise = {
-    enable = false;
+    enable = true;
 
     globalConfig = {
       tools = {

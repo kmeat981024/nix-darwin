@@ -6,7 +6,7 @@
   }: {
     nix = {
       enable = true;
-      package = pkgs.nix;
+      package = pkgs.nixVersions.latest;
 
       settings = {
         experimental-features = [

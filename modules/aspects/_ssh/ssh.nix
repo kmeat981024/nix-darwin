@@ -4,7 +4,7 @@
     enableDefaultConfig = false;
     matchBlocks = {
       "*" = {};
-      "Github" = {
+      "github.com" = {
         hostname = "github.com";
         user = "git";
         identitiesOnly = true;
