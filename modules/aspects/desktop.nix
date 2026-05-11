@@ -2,7 +2,8 @@
   repo.homeModules.desktop = {
     programs.aerospace = {
       enable = true;
-      userSettings = {
+      launchd.enable = true;
+      settings = {
         start-at-login = true;
         accordion-padding = 10;
         default-root-container-layout = "tiles";

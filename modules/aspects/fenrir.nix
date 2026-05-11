@@ -1,7 +1,7 @@
 {...}: {
   repo.homeModules.fenrir = {
     programs = {
-      aerospace.userSettings.workspace-to-monitor-force-assignment = {
+      aerospace.settings.workspace-to-monitor-force-assignment = {
         "1" = ["secondary" "main"];
         "2" = ["secondary" "main"];
         "3" = ["secondary" "main"];

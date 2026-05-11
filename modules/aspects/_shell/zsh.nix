@@ -42,7 +42,6 @@
         "vi-mode"
         "zoxide"
         "eza"
-        "mise"
       ];
     };
   };

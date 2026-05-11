@@ -1,22 +1,21 @@
-{inputs, ...}: {
+{...}: {
   flake.modules.darwin.homebrew = {config, ...}: {
     nix-homebrew = {
       enable = true;
       enableRosetta = true;
       user = config.repo.user.name;
-      taps = {
-        "homebrew/homebrew-core" = inputs.homebrew-core;
-        "homebrew/homebrew-cask" = inputs.homebrew-cask;
-      };
-      mutableTaps = false;
+      mutableTaps = true;
     };
 
     homebrew = {
       enable = true;
 
       onActivation = {
-        autoUpdate = true;
+        autoUpdate = false;
         cleanup = "zap";
+        extraFlags = [
+          "--verbose"
+        ];
       };
 
       masApps = {
@@ -25,26 +24,24 @@
         Bitwarden = 1352778147;
       };
 
-      taps = builtins.attrNames config.nix-homebrew.taps;
-
       brews = [
         "gemini-cli"
       ];
 
       casks = [
-        "batfi"
-        "hammerspoon"
-        "shottr"
         "arc"
+        "batfi"
+        "claude-code@latest"
         "codex"
-        "claude-code"
-        "telegram"
-        "raycast"
+        "hammerspoon"
+        "iina"
         "jordanbaird-ice"
         "keka"
         "kekaexternalhelper"
+        "raycast"
+        "shottr"
         "stats"
-        "iina"
+        "telegram"
         "utm"
       ];
     };
