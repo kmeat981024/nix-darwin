@@ -24,10 +24,6 @@
         Bitwarden = 1352778147;
       };
 
-      brews = [
-        "gemini-cli"
-      ];
-
       casks = [
         "arc"
         "batfi"
