@@ -37,6 +37,11 @@ config = {
 			mods = "SUPER",
 			action = wezterm.action.ActivateCommandPalette,
 		},
+		{
+			key = "Enter",
+			mods = "ALT",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
 	},
 }
 
