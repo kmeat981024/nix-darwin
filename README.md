@@ -20,7 +20,7 @@ Declarative macOS setup with `nix-darwin`, `home-manager`, `nix-homebrew`, and
 - SOPS age key at:
 
 ```bash
-~/.config/sops/age/keys.txt
+$HOME/.config/sops/age/keys.txt
 ```
 
 ## Repository Layout
@@ -78,9 +78,9 @@ just gc
 - `modules/flake/darwin-configurations.nix` assembles each host’s
   `darwinConfigurations.<host>` output and embeds Home Manager for user `poby`.
 - `modules/aspects/` is the feature vocabulary for hosts. The current feature
-  set is `base`, `nix-core`, `system-packages`, `homebrew`,
-  `macos-defaults`, `activation`, `fonts`, `sudo-auth`, `shell`, `cli-tools`,
-  `git`, `ssh`, `secrets`, `terminal`, `editor`, `desktop`, and `fenrir`.
+  set is `base`, `nix-core`, `system-packages`, `homebrew`, `macos-defaults`,
+  `activation`, `fonts`, `sudo-auth`, `shell`, `cli-tools`, `git`, `ssh`,
+  `secrets`, `terminal`, `editor`, `desktop`, and `fenrir`.
 - The `cli-tools` aspect owns the CLI user tool set, including `zoxide`.
 - `modules/aspects/_*/` contains implementation files that are intentionally not
   auto-loaded. `import-tree` skips paths containing `/_`, which is the repo’s

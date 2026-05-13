@@ -8,6 +8,7 @@ aspect. Do not commit plaintext secrets.
 - Secret file: `secrets/poby.yaml`
 - SOPS rules: `.sops.yaml`
 - Age key file: `~/.config/sops/age/keys.txt`
+- Environment variable: `SOPS_AGE_KEY_FILE`, exported by the `secrets` aspect
 - Secret declarations: `modules/aspects/_secrets/sops.nix`
 - SSH host wiring: `modules/aspects/_ssh/ssh.nix`
 
@@ -22,7 +23,7 @@ nix-shell -p sops age
 Open the encrypted secret file with the age key:
 
 ```bash
-SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt" sops secrets/poby.yaml
+sops secrets/poby.yaml
 ```
 
 Add a top-level key name and paste the private key as a YAML block scalar:
@@ -37,6 +38,13 @@ workstation_ssh_key: |
 Save and quit the editor. SOPS will re-encrypt the file automatically.
 
 Do not edit the `sops:` metadata block manually.
+
+If this machine has not applied the Home Manager config yet, set the age key
+file explicitly for the command:
+
+```bash
+SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt" sops secrets/poby.yaml
+```
 
 ## Generate A New SSH Key First
 
@@ -89,8 +97,7 @@ Confirm the encrypted file contains the expected top-level secret names without
 printing secret values:
 
 ```bash
-SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt" \
-  sops -d secrets/poby.yaml \
+sops -d secrets/poby.yaml \
   | awk -F: '/^[A-Za-z0-9_]+:/ { print $1 }'
 ```
 

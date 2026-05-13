@@ -1,6 +1,12 @@
-{config, ...}: {
+{config, ...}: let
+  ageKeyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+in {
+  home.sessionVariables = {
+    SOPS_AGE_KEY_FILE = ageKeyFile;
+  };
+
   sops = {
-    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+    age.keyFile = ageKeyFile;
 
     defaultSopsFile = config.repo.user.secretFile;
 
