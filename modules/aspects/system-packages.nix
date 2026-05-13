@@ -7,6 +7,7 @@
         git
         neovim
         just
+        sops
         tree
         fastfetchMinimal
       ];

@@ -9,18 +9,13 @@ aspect. Do not commit plaintext secrets.
 - SOPS rules: `.sops.yaml`
 - Age key file: `~/.config/sops/age/keys.txt`
 - Environment variable: `SOPS_AGE_KEY_FILE`, exported by the `secrets` aspect
+- SOPS CLI: installed by the system packages aspect
 - Secret declarations: `modules/aspects/_secrets/sops.nix`
 - SSH host wiring: `modules/aspects/_ssh/ssh.nix`
 
 ## Add An SSH Private Key
 
-From the repository root, open a shell with `sops` and `age`:
-
-```bash
-nix-shell -p sops age
-```
-
-Open the encrypted secret file with the age key:
+From the repository root, open the encrypted secret file:
 
 ```bash
 sops secrets/poby.yaml
@@ -44,6 +39,13 @@ file explicitly for the command:
 
 ```bash
 SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt" sops secrets/poby.yaml
+```
+
+If the system package set has not been applied yet, run the command from a
+temporary shell with `sops`:
+
+```bash
+nix-shell -p sops --run 'sops secrets/poby.yaml'
 ```
 
 ## Generate A New SSH Key First
