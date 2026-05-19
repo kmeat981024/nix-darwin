@@ -18,6 +18,10 @@
         ];
       };
 
+      taps = [
+        "postmelee/tap"
+      ];
+
       masApps = {
         KakaoTalk = 869223134;
         Across = 6444851827;
@@ -25,19 +29,20 @@
       };
 
       casks = [
+        "alhangeul"
         "arc"
         "batfi"
         "claude-code@latest"
         "codex"
         "hammerspoon"
         "iina"
-        "jordanbaird-ice"
         "keka"
         "kekaexternalhelper"
         "raycast"
         "shottr"
         "stats"
         "telegram"
+        "thaw@beta"
         "utm"
       ];
     };
