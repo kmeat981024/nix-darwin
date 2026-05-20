@@ -41,6 +41,7 @@
         "raycast"
         "shottr"
         "stats"
+        "tailscale"
         "telegram"
         "thaw@beta"
         "utm"
