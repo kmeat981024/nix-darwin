@@ -9,7 +9,7 @@
         just
         sops
         tree
-        fastfetchMinimal
+        fastfetch.minimal
       ];
       variables.EDITOR = "nvim";
     };
