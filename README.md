@@ -26,7 +26,8 @@ $HOME/.config/sops/age/keys.txt
 ## Repository Layout
 
 - `flake.nix`: `flake-parts` entrypoint and flake inputs
-- `Justfile`: day-to-day commands (`darwin`, `darwin-debug`, `fmt`, `up`, `gc`)
+- `Justfile`: day-to-day commands (`dry-run`, `darwin`, `darwin-debug`,
+  `fmt`, `up`, `repl`, `gc`, `gcroot`)
 - `modules/flake/`: repo options, Darwin assembly, and shared context modules
 - `modules/aspects/`: auto-discovered aspect entry modules such as `base`,
   `homebrew`, `shell`, `editor`, and `desktop`
@@ -48,6 +49,9 @@ just darwin $(hostname)
 # Build and switch with trace/verbose logs
 just darwin-debug $(hostname)
 
+# Validate dependency graph without realizing a full build
+just dry-run fenrir
+
 # Format Nix files (from repository root)
 just fmt .
 
@@ -60,7 +64,7 @@ just upp nixpkgs
 # Validate build without switching (example host: fenrir)
 nix build .#darwinConfigurations.fenrir.system --extra-experimental-features 'nix-command flakes'
 
-# Validate without realizing a full build
+# Equivalent raw Nix dry-run validation
 nix build .#darwinConfigurations.fenrir.system --dry-run --extra-experimental-features 'nix-command flakes'
 
 # Inspect profile history / cleanup old generations
@@ -71,7 +75,7 @@ just gc
 
 ## Configuration Notes
 
-- `flake.nix` now uses `flake-parts`, keeps `./modules/flake` explicit, and
+- `flake.nix` uses `flake-parts`, keeps `./modules/flake` explicit, and
   auto-discovers `./modules/aspects` and `./hosts` through `import-tree`.
 - `hosts/fenrir.nix` is the current host declaration and maps `fenrir` to one
   flat feature list.
@@ -85,7 +89,7 @@ just gc
 - `modules/aspects/_*/` contains implementation files that are intentionally not
   auto-loaded. `import-tree` skips paths containing `/_`, which is the repo’s
   convention for internal helpers and subtrees like the NVF source.
-- Home Manager is Darwin-integrated only in this phase; no standalone
+- Home Manager is integrated through nix-darwin; no standalone
   `homeConfigurations` output is exposed.
 
 ## Adding A Host
@@ -103,6 +107,7 @@ just gc
 - Home Manager reads from `secrets/poby.yaml` via the `secrets` aspect:
   - `github_ssh_key`
   - `github_cli_token`
+  - `kmeat_mac_mini_ssh_key`
 
 ## Troubleshooting
 

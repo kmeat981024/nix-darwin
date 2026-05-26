@@ -24,7 +24,8 @@
 ## 저장소 구조
 
 - `flake.nix`: `flake-parts` 진입점과 flake input
-- `Justfile`: 일상 명령(`darwin`, `darwin-debug`, `fmt`, `up`, `gc` 등)
+- `Justfile`: 일상 명령(`dry-run`, `darwin`, `darwin-debug`, `fmt`, `up`,
+  `repl`, `gc`, `gcroot` 등)
 - `modules/flake/`: 저장소 옵션, Darwin 조립, 공유 context 모듈
 - `modules/aspects/`: `base`, `homebrew`, `shell`, `editor`, `desktop` 같은
   이름 있는 자동 발견 aspect 진입 모듈
@@ -45,6 +46,9 @@ just darwin $(hostname)
 # trace/verbose 로그와 함께 빌드 및 스위치
 just darwin-debug $(hostname)
 
+# 실제 빌드 없이 의존성 그래프 검증
+just dry-run fenrir
+
 # Nix 파일 포맷팅(저장소 루트 기준)
 just fmt .
 
@@ -57,7 +61,7 @@ just upp nixpkgs
 # 스위치 없이 빌드 검증(예시 호스트: fenrir)
 nix build .#darwinConfigurations.fenrir.system --extra-experimental-features 'nix-command flakes'
 
-# 실제 빌드 없이 dry-run 검증
+# 같은 검증을 raw Nix 명령으로 실행
 nix build .#darwinConfigurations.fenrir.system --dry-run --extra-experimental-features 'nix-command flakes'
 
 # 시스템 프로필 히스토리 확인 / 오래된 generation 정리
@@ -68,7 +72,7 @@ just gc
 
 ## 설정 노트
 
-- `flake.nix`는 이제 `flake-parts`를 사용하고 `./modules/flake`는 명시적으로
+- `flake.nix`는 `flake-parts`를 사용하고 `./modules/flake`는 명시적으로
   유지한 채 `import-tree`로 `./modules/aspects`와 `./hosts`를 자동 발견합니다.
 - `hosts/fenrir.nix`가 현재 호스트 선언이며 `fenrir`를 하나의 flat feature
   목록에 매핑합니다.
@@ -84,8 +88,8 @@ just gc
 - `modules/aspects/_*/`는 자동 발견에서 제외되는 내부 구현 경로입니다.
   이 저장소는 `/_`가 포함된 경로를 `import-tree`가 건너뛴다는 규칙을 사용해
   NVF 같은 서브트리를 보호합니다.
-- 이번 단계에서는 Home Manager를 Darwin 내부에서만 사용하며, 별도의
-  `homeConfigurations` 출력은 만들지 않습니다.
+- Home Manager는 nix-darwin을 통해 통합되며, 별도의 `homeConfigurations`
+  출력은 만들지 않습니다.
 
 ## 호스트 추가 방법
 
@@ -103,6 +107,7 @@ just gc
   읽습니다.
   - `github_ssh_key`
   - `github_cli_token`
+  - `kmeat_mac_mini_ssh_key`
 
 ## 트러블슈팅
 
