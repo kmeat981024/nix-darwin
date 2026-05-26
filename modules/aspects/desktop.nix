@@ -121,6 +121,11 @@
             check-further-callbacks = true;
             run = ["layout floating"];
           }
+          {
+            "if".app-id = "com.apple.Preview";
+            check-further-callbacks = true;
+            run = ["layout floating"];
+          }
         ];
       };
     };
