@@ -17,6 +17,7 @@
       "secrets"
       "terminal"
       "editor"
+      "browser"
       "desktop"
       "fenrir"
     ];
