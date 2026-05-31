@@ -49,6 +49,7 @@
     "extensions.autoDisableScopes" = 0;
     "findbar.highlightAll" = true;
     "full-screen-api.transition-duration.enter" = "0 0";
+    "full-screen-api.macos-native-full-screen" = false;
     "full-screen-api.transition-duration.leave" = "0 0";
     "full-screen-api.warning.timeout" = 0;
     "geo.provider.network.url" = "https://beacondb.net/v1/geolocate";
