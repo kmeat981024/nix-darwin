@@ -1,4 +1,25 @@
-{...}: {
+{...}: let
+  workspaceRule = appId: workspace: {
+    "if" = {
+      app-id = appId;
+      during-aerospace-startup = false;
+    };
+    run = ["move-node-to-workspace ${workspace}"];
+  };
+
+  floatingWorkspaceRule = appId: workspace: {
+    "if" = {
+      app-id = appId;
+      during-aerospace-startup = false;
+    };
+    run = ["layout floating" "move-node-to-workspace ${workspace}"];
+  };
+
+  floatingRule = appId: {
+    "if".app-id = appId;
+    run = ["layout floating"];
+  };
+in {
   repo.homeModules.desktop = {
     programs.aerospace = {
       enable = true;
@@ -81,51 +102,20 @@
         };
 
         on-window-detected = [
-          {
-            "if".app-id = "com.apple.finder";
-            check-further-callbacks = true;
-            run = ["layout floating"];
-          }
-          {
-            "if".app-id = "com.apple.Notes";
-            check-further-callbacks = true;
-            run = ["layout floating"];
-          }
-          {
-            "if".app-id = "com.daymore.Across";
-            check-further-callbacks = true;
-            run = ["layout floating"];
-          }
-          {
-            "if".app-id = "com.bitwarden.desktop";
-            check-further-callbacks = true;
-            run = ["layout floating"];
-          }
-          {
-            "if".app-id = "org.hammerspoon.Hammerspoon";
-            check-further-callbacks = true;
-            run = ["layout floating"];
-          }
-          {
-            "if".app-id = "com.utmapp.UTM";
-            check-further-callbacks = true;
-            run = ["layout floating"];
-          }
-          {
-            "if".app-id = "com.apple.MobileSMS";
-            check-further-callbacks = true;
-            run = ["layout floating"];
-          }
-          {
-            "if".app-id = "cc.ffitch.shottr";
-            check-further-callbacks = true;
-            run = ["layout floating"];
-          }
-          {
-            "if".app-id = "com.apple.Preview";
-            check-further-callbacks = true;
-            run = ["layout floating"];
-          }
+          (workspaceRule "com.github.wez.wezterm" "1")
+          (workspaceRule "com.thebrowser.Browser" "2")
+          (floatingWorkspaceRule "com.daymore.Across" "6")
+          (floatingWorkspaceRule "com.bitwarden.desktop" "6")
+          (workspaceRule "com.apple.mail" "7")
+          (workspaceRule "com.kakao.KakaoTalkMac" "9")
+          (workspaceRule "ru.keepcoder.Telegram" "9")
+          (floatingRule "com.apple.finder")
+          (floatingRule "com.apple.Notes")
+          (floatingRule "org.hammerspoon.Hammerspoon")
+          (floatingRule "com.utmapp.UTM")
+          (floatingRule "com.apple.MobileSMS")
+          (floatingRule "cc.ffitch.shottr")
+          (floatingRule "com.apple.Preview")
         ];
       };
     };
