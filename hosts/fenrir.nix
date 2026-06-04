@@ -16,6 +16,7 @@
       "ssh"
       "secrets"
       "terminal"
+      "hammerspoon"
       "editor"
       "browser"
       "desktop"
