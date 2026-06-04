@@ -30,9 +30,11 @@ $HOME/.config/sops/age/keys.txt
   `fmt`, `up`, `repl`, `gc`, `gcroot`)
 - `modules/flake/`: repo options, Darwin assembly, and shared context modules
 - `modules/aspects/`: auto-discovered aspect entry modules such as `base`,
-  `homebrew`, `shell`, `editor`, and `desktop`
+  `homebrew`, `shell`, `hammerspoon`, `editor`, and `desktop`
 - `modules/aspects/_*/`: ignored internal implementation trees that back the
   public aspect entry modules
+- `modules/aspects/_hammerspoon/`: Hammerspoon configuration linked to
+  `$HOME/.hammerspoon`
 - `hosts/`: auto-discovered host declarations that register `system` and a flat
   `features` list
 - `secrets/`: encrypted secret files (`poby.yaml`)
@@ -84,8 +86,11 @@ just gc
 - `modules/aspects/` is the feature vocabulary for hosts. The current feature
   set is `base`, `nix-core`, `system-packages`, `homebrew`, `macos-defaults`,
   `activation`, `fonts`, `sudo-auth`, `shell`, `cli-tools`, `git`, `ssh`,
-  `secrets`, `terminal`, `editor`, `desktop`, and `fenrir`.
+  `secrets`, `terminal`, `hammerspoon`, `editor`, `desktop`, and `fenrir`.
 - The `cli-tools` aspect owns the CLI user tool set, including `zoxide`.
+- The Hammerspoon app is installed through the `homebrew` cask list, while the
+  `hammerspoon` aspect links `modules/aspects/_hammerspoon/` to
+  `$HOME/.hammerspoon` with Home Manager.
 - `modules/aspects/_*/` contains implementation files that are intentionally not
   auto-loaded. `import-tree` skips paths containing `/_`, which is the repo’s
   convention for internal helpers and subtrees like the NVF source.

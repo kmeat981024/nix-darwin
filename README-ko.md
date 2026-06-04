@@ -27,10 +27,12 @@
 - `Justfile`: 일상 명령(`dry-run`, `darwin`, `darwin-debug`, `fmt`, `up`,
   `repl`, `gc`, `gcroot` 등)
 - `modules/flake/`: 저장소 옵션, Darwin 조립, 공유 context 모듈
-- `modules/aspects/`: `base`, `homebrew`, `shell`, `editor`, `desktop` 같은
-  이름 있는 자동 발견 aspect 진입 모듈
+- `modules/aspects/`: `base`, `homebrew`, `shell`, `hammerspoon`, `editor`,
+  `desktop` 같은 이름 있는 자동 발견 aspect 진입 모듈
 - `modules/aspects/_*/`: 공개 aspect를 뒷받침하는, 자동 로딩에서 제외되는
   내부 구현 트리
+- `modules/aspects/_hammerspoon/`: `$HOME/.hammerspoon`으로 연결되는
+  Hammerspoon 설정
 - `hosts/`: `system`과 flat `features` 목록을 등록하는 자동 발견 호스트 선언
 - `secrets/`: 암호화된 시크릿 파일(`poby.yaml`)
 
@@ -82,9 +84,12 @@ just gc
 - `modules/aspects/`가 호스트가 선택하는 기능 vocabulary입니다. 현재 feature
   집합은 `base`, `nix-core`, `system-packages`, `homebrew`,
   `macos-defaults`, `activation`, `fonts`, `sudo-auth`, `shell`,
-  `cli-tools`, `git`, `ssh`, `secrets`, `terminal`, `editor`, `desktop`,
-  `fenrir` 입니다.
+  `cli-tools`, `git`, `ssh`, `secrets`, `terminal`, `hammerspoon`, `editor`,
+  `desktop`, `fenrir` 입니다.
 - `cli-tools` aspect가 `zoxide`를 포함한 CLI 사용자 도구 묶음을 담당합니다.
+- Hammerspoon 앱은 `homebrew` cask 목록으로 설치하고, `hammerspoon`
+  aspect는 Home Manager로 `modules/aspects/_hammerspoon/`을
+  `$HOME/.hammerspoon`에 연결합니다.
 - `modules/aspects/_*/`는 자동 발견에서 제외되는 내부 구현 경로입니다.
   이 저장소는 `/_`가 포함된 경로를 `import-tree`가 건너뛴다는 규칙을 사용해
   NVF 같은 서브트리를 보호합니다.
