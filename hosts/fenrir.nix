@@ -19,6 +19,7 @@
       "hammerspoon"
       "editor"
       "browser"
+      "discord"
       "desktop"
       "fenrir"
     ];

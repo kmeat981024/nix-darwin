@@ -107,6 +107,7 @@ in {
           (floatingWorkspaceRule "com.daymore.Across" "6")
           (floatingWorkspaceRule "com.bitwarden.desktop" "6")
           (workspaceRule "com.apple.mail" "7")
+          (workspaceRule "com.hnc.Discord" "8")
           (workspaceRule "com.kakao.KakaoTalkMac" "9")
           (workspaceRule "ru.keepcoder.Telegram" "9")
           (floatingRule "com.apple.finder")
