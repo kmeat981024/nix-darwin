@@ -38,7 +38,7 @@ in {
       gemini = {
         title = "Gemini";
         id = "06f6d673-f21e-42aa-97ac-9b3abd8b655d";
-        url = "https://gemini.google.com";
+        url = "https://gemini.google.com/u/1/app";
         workspace = spaces.developer.id;
         container = containers.personal.id;
         position = 1100;
@@ -205,22 +205,13 @@ in {
         position = 2000;
       };
 
-      investing = {
-        title = "Investing.com";
-        id = "5c313f11-e48a-4949-bb2b-6afaa5a535d7";
-        url = "https://www.investing.com";
-        workspace = spaces.finance.id;
-        container = containers.personal.id;
-        position = 2100;
-      };
-
       tradingview = {
         title = "TradingView";
         id = "b10e6f87-622e-43da-883c-d5d789f7423d";
         url = "https://www.tradingview.com/chart/FGyFZdhQ/?symbol=DEEPCOIN:ETHUSDT.P";
         workspace = spaces.finance.id;
         container = containers.personal.id;
-        position = 2200;
+        position = 2100;
       };
 
       deepcoin = {
@@ -229,7 +220,25 @@ in {
         url = "https://www.deepcoin.com/swap/en/ETHUSDT";
         workspace = spaces.finance.id;
         container = containers.personal.id;
+        position = 2200;
+      };
+
+      bithumb = {
+        title = "Bithumb";
+        id = "dba959d9-d1d1-40c0-bbae-72d6c0fe63d4";
+        url = "https://www.bithumb.com/react/trade/order/ETH-KRW";
+        workspace = spaces.finance.id;
+        container = containers.personal.id;
         position = 2300;
+      };
+
+      investing-dot-com = {
+        title = "Investing.com";
+        id = "5c313f11-e48a-4949-bb2b-6afaa5a535d7";
+        url = "https://www.investing.com";
+        workspace = spaces.finance.id;
+        container = containers.personal.id;
+        position = 2400;
       };
 
       real-estate-folder = {
@@ -237,7 +246,7 @@ in {
         id = "ef2c4075-24a9-4b90-b4d7-4bc5ad0f6a9b";
         workspace = spaces.finance.id;
         container = containers.personal.id;
-        position = 2400;
+        position = 2500;
         isGroup = true;
         editedTitle = true;
         isFolderCollapsed = false;
@@ -251,7 +260,7 @@ in {
         workspace = spaces.finance.id;
         container = containers.personal.id;
         folderParentId = real-estate-folder.id;
-        position = 2410;
+        position = 2510;
       };
 
       lh-apply = {
@@ -261,7 +270,7 @@ in {
         workspace = spaces.finance.id;
         container = containers.personal.id;
         folderParentId = real-estate-folder.id;
-        position = 2420;
+        position = 2520;
       };
 
       sh-apply = {
@@ -271,7 +280,7 @@ in {
         workspace = spaces.finance.id;
         container = containers.personal.id;
         folderParentId = real-estate-folder.id;
-        position = 2430;
+        position = 2530;
       };
 
       applyhome = {
@@ -281,7 +290,7 @@ in {
         workspace = spaces.finance.id;
         container = containers.personal.id;
         folderParentId = real-estate-folder.id;
-        position = 2440;
+        position = 2540;
       };
 
       ayoung-home = {
@@ -291,7 +300,7 @@ in {
         workspace = spaces.finance.id;
         container = containers.personal.id;
         folderParentId = real-estate-folder.id;
-        position = 2450;
+        position = 2550;
       };
 
       ayoung-cafe = {
@@ -301,7 +310,25 @@ in {
         workspace = spaces.finance.id;
         container = containers.personal.id;
         folderParentId = real-estate-folder.id;
-        position = 2460;
+        position = 2560;
+      };
+
+      gov24 = {
+        title = "정부24";
+        id = "8d26c1dc-a9b0-4b91-81fd-584fba99ed9c";
+        url = "https://plus.gov.kr/";
+        workspace = spaces.finance.id;
+        container = containers.personal.id;
+        position = 2600;
+      };
+
+      hometax = {
+        title = "홈택스";
+        id = "6e2a17b3-3192-418d-b4a8-a6eead3cda7c";
+        url = "https://hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index_pp.xml&menuCd=index3";
+        workspace = spaces.finance.id;
+        container = containers.personal.id;
+        position = 2700;
       };
 
       tving = {

@@ -19,13 +19,14 @@ spoon.HyperKeyBindings
 		hs.reload()
 	end)
 	:bindApps({
-		t = "com.github.wez.wezterm",
-		b = "company.thebrowser.Browser",
 		a = "com.daymore.Across",
+		b = "app.zen-browser.zen",
+		d = "com.hnc.Discord",
 		f = "com.apple.finder",
 		k = "com.kakao.KakaoTalkMac",
 		l = "ru.keepcoder.Telegram",
 		m = "com.apple.mail",
+		t = "com.github.wez.wezterm",
 	})
 
 spoon.HyperKeyBindings:start()
