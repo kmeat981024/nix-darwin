@@ -47,7 +47,7 @@
           FXEnableExtensionChangeWarning = false;
           FXDefaultSearchScope = "SCcf";
           NewWindowTarget = "Other";
-          NewWindowTargetPath = "${config.repo.user.homeDirectory}/Downloads";
+          NewWindowTargetPath = "file://${config.repo.user.homeDirectory}/Downloads";
           ShowExternalHardDrivesOnDesktop = true;
           ShowHardDrivesOnDesktop = true;
           ShowMountedServersOnDesktop = true;
