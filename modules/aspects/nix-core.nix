@@ -21,8 +21,22 @@
         auto-optimise-store = false;
       };
 
+      optimise = {
+        automatic = lib.mkDefault true;
+        interval = lib.mkDefault {
+          Weekday = 7;
+          Hour = 4;
+          Minute = 15;
+        };
+      };
+
       gc = {
         automatic = lib.mkDefault true;
+        interval = lib.mkDefault {
+          Weekday = 7;
+          Hour = 3;
+          Minute = 0;
+        };
         options = lib.mkDefault "--delete-older-than 7d";
       };
     };
