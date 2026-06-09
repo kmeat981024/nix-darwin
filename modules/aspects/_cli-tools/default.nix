@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./atuin.nix
     ./bat.nix
     ./bun.nix
     ./eza.nix
