@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   programs.zsh = {
     enable = true;
 
@@ -26,10 +26,6 @@
     sessionVariables = {
       EDITOR = "nvim";
     };
-
-    initContent = ''
-      export GH_TOKEN="$(cat ${config.sops.secrets."github_cli_token".path})"
-    '';
 
     oh-my-zsh = {
       enable = true;

@@ -5,6 +5,12 @@ in {
     SOPS_AGE_KEY_FILE = ageKeyFile;
   };
 
+  programs.zsh.initContent = ''
+    gh() {
+      GH_TOKEN="$(< ${config.sops.secrets."github_cli_token".path})" command gh "$@"
+    }
+  '';
+
   sops = {
     age.keyFile = ageKeyFile;
 
