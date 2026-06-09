@@ -7,14 +7,31 @@
   userName = config.repo.user.name;
 
   mkDarwinConfiguration = hostName: hostConfig: let
+    knownFeatureSet = config.flake.modules.darwin // config.repo.homeModules;
+    knownFeatures = builtins.attrNames knownFeatureSet;
+    unknownFeatures =
+      builtins.filter
+      (feature: !(builtins.hasAttr feature knownFeatureSet))
+      hostConfig.features;
+    checkedFeatures =
+      if unknownFeatures == []
+      then hostConfig.features
+      else
+        throw ''
+          Unknown feature(s) for host ${hostName}: ${lib.concatStringsSep ", " unknownFeatures}
+
+          Known features:
+          ${lib.concatStringsSep ", " knownFeatures}
+        '';
+
     hostContext = {
       name = hostName;
       system = hostConfig.system;
-      features = hostConfig.features;
+      features = checkedFeatures;
     };
 
-    darwinModules = builtins.map (feature: config.flake.modules.darwin.${feature} or {}) hostConfig.features;
-    homeModules = builtins.map (feature: config.repo.homeModules.${feature} or {}) hostConfig.features;
+    darwinModules = builtins.map (feature: config.flake.modules.darwin.${feature} or {}) checkedFeatures;
+    homeModules = builtins.map (feature: config.repo.homeModules.${feature} or {}) checkedFeatures;
   in
     inputs.darwin.lib.darwinSystem {
       system = hostConfig.system;
