@@ -26,19 +26,5 @@
     sessionVariables = {
       EDITOR = "nvim";
     };
-
-    oh-my-zsh = {
-      enable = true;
-      theme = "robbyrussell";
-      plugins = [
-        "git"
-        "gitignore"
-        "history"
-        "sudo"
-        "vi-mode"
-        "zoxide"
-        "eza"
-      ];
-    };
   };
 }

@@ -32,4 +32,16 @@ in {
       };
     };
   };
+
+  programs.zsh.shellAliases = {
+    g = "git";
+    gaa = "git add --all";
+    gc = "git commit --verbose";
+    gco = "git checkout";
+    gd = "git diff";
+    gl = "git pull";
+    glg = "git log --stat";
+    gp = "git push";
+    gst = "git status";
+  };
 }
