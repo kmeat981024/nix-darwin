@@ -46,6 +46,17 @@
         ServerAliveInterval = 30;
         ServerAliveCountMax = 3;
       };
+      "alfheim" = {
+        Hostname = "alfheim.tail6fc192.ts.net";
+        User = "poby";
+        Port = 22;
+        IdentitiesOnly = true;
+        IdentityFile = [config.sops.secrets."github_ssh_key".path];
+        PreferredAuthentications = "publickey";
+        ForwardAgent = false;
+        ServerAliveInterval = 30;
+        ServerAliveCountMax = 3;
+      };
     };
   };
 }
