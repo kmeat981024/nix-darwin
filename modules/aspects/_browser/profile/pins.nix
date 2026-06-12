@@ -144,6 +144,16 @@ in {
         position = 1470;
       };
 
+      homelab-docs = {
+        title = "Homelab Documentation";
+        id = "d7ceff41-a9c7-4c5d-aeb8-9591a23acab8";
+        url = "https://docs.ridewithmin.com";
+        workspace = spaces.developer.id;
+        container = containers.personal.id;
+        folderParentId = homelab-folder.id;
+        position = 1480;
+      };
+
       nix-folder = {
         title = "Nix";
         id = "1a16dcb7-aa4d-4c06-8efd-6719d9791483";
