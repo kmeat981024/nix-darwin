@@ -11,6 +11,7 @@
     ./npm.nix
     ./ripgrep.nix
     ./uv.nix
+    ./yarn.nix
     ./zoxide.nix
   ];
 }
