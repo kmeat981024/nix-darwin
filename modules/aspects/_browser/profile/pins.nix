@@ -196,10 +196,10 @@ in {
         position = 1530;
       };
 
-      noogle = {
-        title = "Noogle";
-        id = "28b3c887-ef66-4b21-98bc-ca499d8860a9";
-        url = "https://noogle.dev/";
+      nix-ee = {
+        title = "Nix.ee";
+        id = "90f44734-3a83-42d9-9e54-35dc645ff126";
+        url = "https://search.nix.ee/";
         workspace = spaces.developer.id;
         container = containers.personal.id;
         folderParentId = nix-folder.id;
