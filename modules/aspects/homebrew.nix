@@ -28,6 +28,11 @@
         Bitwarden = 1352778147;
       };
 
+      brews = [
+        "podman"
+        "podman-compose"
+      ];
+
       casks = [
         "alhangeul"
         "arc"
