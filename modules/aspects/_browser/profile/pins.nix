@@ -206,28 +206,28 @@ in {
         position = 1540;
       };
 
-      tossinvest = {
-        title = "TossInvest";
-        id = "f11b2c97-8867-4e95-9a17-e5fc8cdc8dfe";
-        url = "https://www.tossinvest.com/";
-        workspace = spaces.finance.id;
-        container = containers.personal.id;
-        position = 2000;
-      };
-
       tradingview = {
         title = "TradingView";
         id = "b10e6f87-622e-43da-883c-d5d789f7423d";
         url = "https://www.tradingview.com/chart/FGyFZdhQ/?symbol=DEEPCOIN:ETHUSDT.P";
         workspace = spaces.finance.id;
         container = containers.personal.id;
-        position = 2100;
+        position = 2000;
       };
 
       deepcoin = {
         title = "Deepcoin";
         id = "d2217bc7-bdb9-4d37-9fc2-2c66fcb4195e";
         url = "https://www.deepcoin.com/swap/en/ETHUSDT";
+        workspace = spaces.finance.id;
+        container = containers.personal.id;
+        position = 2100;
+      };
+
+      tossinvest = {
+        title = "TossInvest";
+        id = "f11b2c97-8867-4e95-9a17-e5fc8cdc8dfe";
+        url = "https://www.tossinvest.com/";
         workspace = spaces.finance.id;
         container = containers.personal.id;
         position = 2200;
