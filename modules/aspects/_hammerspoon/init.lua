@@ -1,3 +1,5 @@
+require("hs.ipc")
+
 local FRemap = require("foundation_remapping")
 local remapper = FRemap.new()
 
