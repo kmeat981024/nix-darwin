@@ -350,13 +350,22 @@ in {
         position = 3000;
       };
 
+      instagram = {
+        title = "TVing";
+        id = "101d95d5-8326-4092-827b-160bd78a12ad";
+        url = "https://www.instagram.com/";
+        workspace = spaces.playground.id;
+        container = containers.personal.id;
+        position = 3100;
+      };
+
       toeic = {
         title = "TOEIC";
         id = "796088ee-5021-44d8-ad5b-d84ceae3bb80";
         url = "https://exam.toeic.co.kr/";
         workspace = spaces.playground.id;
         container = containers.personal.id;
-        position = 3100;
+        position = 3200;
       };
 
       g-telp = {
@@ -365,7 +374,7 @@ in {
         url = "https://www.g-telp.co.kr:335/";
         workspace = spaces.playground.id;
         container = containers.personal.id;
-        position = 3200;
+        position = 3300;
       };
 
       beside-global = {
@@ -374,7 +383,7 @@ in {
         url = "https://beside-global.daouoffice.com/home";
         workspace = spaces.playground.id;
         container = containers.personal.id;
-        position = 3300;
+        position = 3400;
       };
     };
   };

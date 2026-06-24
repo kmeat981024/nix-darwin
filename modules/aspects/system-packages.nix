@@ -9,7 +9,7 @@
         just
         sops
         tree
-        fastfetch.minimal
+        fastfetch-unwrapped
       ];
       variables.EDITOR = "nvim";
     };
