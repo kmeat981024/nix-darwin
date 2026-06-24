@@ -351,7 +351,7 @@ in {
       };
 
       instagram = {
-        title = "TVing";
+        title = "Instagram";
         id = "101d95d5-8326-4092-827b-160bd78a12ad";
         url = "https://www.instagram.com/";
         workspace = spaces.playground.id;
