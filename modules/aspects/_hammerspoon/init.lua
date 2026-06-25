@@ -28,6 +28,7 @@ spoon.HyperKeyBindings
 		k = "com.kakao.KakaoTalkMac",
 		l = "ru.keepcoder.Telegram",
 		m = "com.apple.mail",
+		n = "com.apple.Notes",
 		t = "com.github.wez.wezterm",
 		v = "com.google.Chrome",
 	})
