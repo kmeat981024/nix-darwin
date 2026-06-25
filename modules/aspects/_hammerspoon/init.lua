@@ -29,6 +29,7 @@ spoon.HyperKeyBindings
 		l = "ru.keepcoder.Telegram",
 		m = "com.apple.mail",
 		t = "com.github.wez.wezterm",
+		v = "com.google.Chrome",
 	})
 
 spoon.HyperKeyBindings:start()
