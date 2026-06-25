@@ -40,6 +40,7 @@
         "claude-code@latest"
         "codex"
         "finetune"
+        "google-chrome"
         "hammerspoon"
         "iina"
         "keka"
