@@ -109,7 +109,7 @@ in {
           (workspaceRule "com.daymore.Across" "6")
           (workspaceRule "com.bitwarden.desktop" "6")
           (workspaceRule "com.apple.mail" "7")
-          (workspaceRule "com.hnc.Discord" "9")
+          (workspaceRule "com.hnc.Discord" "8")
           (workspaceRule "com.kakao.KakaoTalkMac" "9")
           (workspaceRule "ru.keepcoder.Telegram" "9")
           (floatingRule "com.apple.finder")
