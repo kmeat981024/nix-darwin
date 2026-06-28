@@ -11,7 +11,6 @@
         tree
         fastfetch-unwrapped
       ];
-      variables.EDITOR = "nvim";
     };
   };
 }
