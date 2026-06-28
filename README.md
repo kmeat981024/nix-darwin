@@ -3,7 +3,8 @@
 [한국어](README-ko.md)
 
 Declarative macOS setup with `nix-darwin`, `home-manager`, `nix-homebrew`, and
-`sops-nix`.
+`sops-nix`. The flake assembles one or more macOS hosts from small aspect
+modules, with Home Manager embedded through nix-darwin.
 
 ## What This Repo Manages
 
@@ -11,6 +12,8 @@ Declarative macOS setup with `nix-darwin`, `home-manager`, `nix-homebrew`, and
 - Auto-discovered Darwin and Home Manager aspects in `modules/aspects/`
 - Auto-discovered host declarations in `hosts/`
 - Encrypted secrets via SOPS (`secrets/` + `.sops.yaml`)
+- Editor, browser, terminal, shell, desktop, SSH, and CLI tooling for user
+  `poby`
 
 ## Prerequisites
 
@@ -26,15 +29,20 @@ $HOME/.config/sops/age/keys.txt
 ## Repository Layout
 
 - `flake.nix`: `flake-parts` entrypoint and flake inputs
-- `Justfile`: day-to-day commands (`dry-run`, `darwin`, `darwin-debug`,
-  `fmt`, `up`, `repl`, `gc`, `gcroot`)
+- `Justfile`: day-to-day commands (`dry-run`, `darwin`, `darwin-debug`, `fmt`,
+  `up`, `upp`, `repl`, `history`, `clean`, `gc`, `gcroot`)
 - `modules/flake/`: repo options, Darwin assembly, and shared context modules
 - `modules/aspects/`: auto-discovered aspect entry modules such as `base`,
-  `homebrew`, `shell`, `hammerspoon`, `editor`, and `desktop`
+  `homebrew`, `shell`, `browser`, `discord`, `editor`, and `desktop`
 - `modules/aspects/_*/`: ignored internal implementation trees that back the
   public aspect entry modules
 - `modules/aspects/_hammerspoon/`: Hammerspoon configuration linked to
   `$HOME/.hammerspoon`
+- `modules/aspects/_editor/`: NVF and Zed editor configuration
+- `modules/aspects/_browser/`: Zen Browser policies, profile settings,
+  extensions, containers, spaces, and pinned tabs
+- `modules/aspects/_secrets/`: `sops-nix` declarations and Home Manager session
+  variables
 - `hosts/`: auto-discovered host declarations that register `system` and a flat
   `features` list
 - `secrets/`: encrypted secret files (`poby.yaml`)
@@ -69,7 +77,7 @@ nix build .#darwinConfigurations.fenrir.system --extra-experimental-features 'ni
 # Equivalent raw Nix dry-run validation
 nix build .#darwinConfigurations.fenrir.system --dry-run --extra-experimental-features 'nix-command flakes'
 
-# Inspect profile history / cleanup old generations
+# Inspect profile history / clean old generations / collect unused store paths
 just history
 just clean
 just gc
@@ -86,8 +94,14 @@ just gc
 - `modules/aspects/` is the feature vocabulary for hosts. The current feature
   set is `base`, `nix-core`, `system-packages`, `homebrew`, `macos-defaults`,
   `activation`, `fonts`, `sudo-auth`, `shell`, `cli-tools`, `git`, `ssh`,
-  `secrets`, `terminal`, `hammerspoon`, `editor`, `desktop`, and `fenrir`.
+  `secrets`, `terminal`, `hammerspoon`, `editor`, `browser`, `discord`,
+  `desktop`, and `fenrir`.
 - The `cli-tools` aspect owns the CLI user tool set, including `zoxide`.
+- The `editor` aspect imports both NVF and Zed. Zed is configured through Home
+  Manager with mutable user settings and keymaps enabled, the `nix` extension,
+  `nixd` as the active Nix language server, and Alejandra as the Nix formatter.
+- The `browser` aspect manages Zen Browser through Home Manager, including
+  browser policies and the profile modules under `modules/aspects/_browser/`.
 - The Hammerspoon app is installed through the `homebrew` cask list, while the
   `hammerspoon` aspect links `modules/aspects/_hammerspoon/` to
   `$HOME/.hammerspoon` with Home Manager.

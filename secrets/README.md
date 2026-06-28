@@ -12,6 +12,10 @@ aspect. Do not commit plaintext secrets.
 - SOPS CLI: installed by the system packages aspect
 - Secret declarations: `modules/aspects/_secrets/sops.nix`
 - SSH host wiring: `modules/aspects/_ssh/ssh.nix`
+- Declared secret names:
+  - `github_ssh_key`
+  - `github_cli_token`
+  - `kmeat_mac_mini_ssh_key`
 
 ## Add An SSH Private Key
 
@@ -21,7 +25,8 @@ From the repository root, open the encrypted secret file:
 sops secrets/poby.yaml
 ```
 
-Add a top-level key name and paste the private key as a YAML block scalar:
+Add a top-level key name and paste the private key as a YAML block scalar. The
+key name should match the Nix declaration you will add later.
 
 ```yaml
 workstation_ssh_key: |
@@ -75,9 +80,14 @@ Add the secret name to `modules/aspects/_secrets/sops.nix`:
 secrets = {
   "github_ssh_key" = {};
   "github_cli_token" = {};
+  "kmeat_mac_mini_ssh_key" = {};
   "workstation_ssh_key" = {};
 };
 ```
+
+The `secrets` aspect sets `sops.defaultSopsFile` from
+`repo.user.secretFile`, which defaults to `secrets/poby.yaml` in
+`modules/flake/options.nix`.
 
 ## Use The Secret For SSH
 
@@ -110,6 +120,12 @@ rg -n "BEGIN OPENSSH PRIVATE KEY|END OPENSSH PRIVATE KEY" secrets/poby.yaml
 ```
 
 Expected result: no output.
+
+Check that every secret referenced by SSH is declared in SOPS before switching:
+
+```bash
+rg 'config\.sops\.secrets' modules/aspects/_ssh/ssh.nix
+```
 
 Evaluate the Darwin configuration:
 
