@@ -6,7 +6,22 @@
 
     enable = true;
     defaultEditor = true;
-    extensions = ["catppuccin" "catppuccin-icons" "nix" "biome" "html"];
+    extensions = [
+      "astro"
+      "biome"
+      "catppuccin"
+      "catppuccin-icons"
+      "dockerfile"
+      "html"
+      "java"
+      "just"
+      "lua"
+      "make"
+      "nix"
+      "sql"
+      "svelte"
+      "toml"
+    ];
 
     mutableUserSettings = true;
     mutableUserKeymaps = true;
