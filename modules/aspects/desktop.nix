@@ -103,6 +103,7 @@ in {
 
         on-window-detected = [
           (workspaceRule "com.github.wez.wezterm" "1")
+          (workspaceRule "dev.zed.Zed" "1")
           (workspaceRule "app.zen-browser.zen" "2")
           (workspaceRule "com.thebrowser.Browser" "2")
           (workspaceRule "com.daymore.Across" "6")
