@@ -12,6 +12,7 @@
       "catppuccin"
       "catppuccin-icons"
       "dockerfile"
+      "git-firefly"
       "html"
       "java"
       "just"
