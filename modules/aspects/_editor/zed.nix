@@ -1,7 +1,12 @@
-{...}: {
+{pkgs, ...}: {
   programs.zed-editor = {
+    extraPackages = with pkgs; [
+      alejandra
+    ];
+
     enable = true;
     defaultEditor = true;
+    extensions = ["catppuccin" "catppuccin-icons" "nix" "biome" "html"];
 
     mutableUserSettings = true;
     mutableUserKeymaps = true;
@@ -189,7 +194,7 @@
           };
         };
         sandbox_permissions = {
-          allow_all_hosts = true;
+          allow_network = true;
           allow_unsandboxed = true;
           write_paths = ["/tmp/zed/sandbox"];
         };
@@ -224,6 +229,15 @@
         };
         JSON = {};
         JSONC = {};
+        Nix = {
+          language_servers = ["nixd" "!nil"];
+          formatter = {
+            external = {
+              command = "${pkgs.alejandra}/bin/alejandra";
+              arguments = ["--quiet" "--"];
+            };
+          };
+        };
       };
       lsp = {
         rust-analyzer = {
