@@ -1,7 +1,8 @@
 # nix-darwin
 
 `nix-darwin`, `home-manager`, `nix-homebrew`, `sops-nix` 기반의 선언적 macOS
-설정 저장소입니다.
+설정 저장소입니다. 작은 aspect 모듈을 조합해 macOS 호스트를 만들고,
+Home Manager는 nix-darwin 안에 통합해서 사용합니다.
 
 ## 이 저장소가 관리하는 것
 
@@ -9,6 +10,8 @@
 - `modules/aspects/`의 자동 발견 Darwin/Home Manager aspect
 - `hosts/`의 자동 발견 멀티 호스트 선언
 - `secrets/` + `.sops.yaml`의 SOPS 암호화 시크릿
+- 사용자 `poby`의 에디터, 브라우저, 터미널, 쉘, 데스크톱, SSH, CLI 도구
+  설정
 
 ## 사전 요구사항
 
@@ -25,14 +28,18 @@
 
 - `flake.nix`: `flake-parts` 진입점과 flake input
 - `Justfile`: 일상 명령(`dry-run`, `darwin`, `darwin-debug`, `fmt`, `up`,
-  `repl`, `gc`, `gcroot` 등)
+  `upp`, `repl`, `history`, `clean`, `gc`, `gcroot` 등)
 - `modules/flake/`: 저장소 옵션, Darwin 조립, 공유 context 모듈
 - `modules/aspects/`: `base`, `homebrew`, `shell`, `hammerspoon`, `editor`,
-  `desktop` 같은 이름 있는 자동 발견 aspect 진입 모듈
+  `browser`, `discord`, `desktop` 같은 이름 있는 자동 발견 aspect 진입 모듈
 - `modules/aspects/_*/`: 공개 aspect를 뒷받침하는, 자동 로딩에서 제외되는
   내부 구현 트리
 - `modules/aspects/_hammerspoon/`: `$HOME/.hammerspoon`으로 연결되는
   Hammerspoon 설정
+- `modules/aspects/_editor/`: NVF와 Zed 에디터 설정
+- `modules/aspects/_browser/`: Zen Browser 정책, 프로필 설정, 확장,
+  컨테이너, 스페이스, 고정 탭 설정
+- `modules/aspects/_secrets/`: `sops-nix` 선언과 Home Manager 세션 변수
 - `hosts/`: `system`과 flat `features` 목록을 등록하는 자동 발견 호스트 선언
 - `secrets/`: 암호화된 시크릿 파일(`poby.yaml`)
 
@@ -66,7 +73,7 @@ nix build .#darwinConfigurations.fenrir.system --extra-experimental-features 'ni
 # 같은 검증을 raw Nix 명령으로 실행
 nix build .#darwinConfigurations.fenrir.system --dry-run --extra-experimental-features 'nix-command flakes'
 
-# 시스템 프로필 히스토리 확인 / 오래된 generation 정리
+# 시스템 프로필 히스토리 확인 / 오래된 generation 정리 / 미사용 store 경로 정리
 just history
 just clean
 just gc
@@ -85,8 +92,14 @@ just gc
   집합은 `base`, `nix-core`, `system-packages`, `homebrew`,
   `macos-defaults`, `activation`, `fonts`, `sudo-auth`, `shell`,
   `cli-tools`, `git`, `ssh`, `secrets`, `terminal`, `hammerspoon`, `editor`,
-  `desktop`, `fenrir` 입니다.
+  `browser`, `discord`, `desktop`, `fenrir` 입니다.
 - `cli-tools` aspect가 `zoxide`를 포함한 CLI 사용자 도구 묶음을 담당합니다.
+- `editor` aspect는 NVF와 Zed를 함께 가져옵니다. Zed는 Home Manager로
+  설정하며 사용자 설정과 keymap의 mutable 옵션을 켜고, `nix` 확장,
+  Nix language server로 `nixd`, Nix formatter로 Alejandra를 사용합니다.
+- `browser` aspect는 Home Manager로 Zen Browser를 관리하며,
+  `modules/aspects/_browser/` 아래의 브라우저 정책과 프로필 모듈을
+  포함합니다.
 - Hammerspoon 앱은 `homebrew` cask 목록으로 설치하고, `hammerspoon`
   aspect는 Home Manager로 `modules/aspects/_hammerspoon/`을
   `$HOME/.hammerspoon`에 연결합니다.
