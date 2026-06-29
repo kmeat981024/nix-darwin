@@ -3,7 +3,7 @@
 This directory stores SOPS-encrypted secrets used by the `secrets` Home Manager
 aspect. Do not commit plaintext secrets.
 
-## Current Setup
+## Current setup
 
 - Secret file: `secrets/poby.yaml`
 - SOPS rules: `.sops.yaml`
@@ -17,7 +17,7 @@ aspect. Do not commit plaintext secrets.
   - `github_cli_token`
   - `kmeat_mac_mini_ssh_key`
 
-## Add An SSH Private Key
+## Add an SSH private key
 
 From the repository root, open the encrypted secret file:
 
@@ -53,7 +53,7 @@ temporary shell with `sops`:
 nix-shell -p sops --run 'sops secrets/poby.yaml'
 ```
 
-## Generate A New SSH Key First
+## Generate a new SSH key first
 
 If the key does not exist yet, generate it before opening SOPS:
 
@@ -72,7 +72,7 @@ Then copy the private key contents into `secrets/poby.yaml` with SOPS.
 After the private key is stored in SOPS and deployed through `sops-nix`, remove
 any temporary plaintext private key if it is no longer needed outside this repo.
 
-## Declare The Secret In Nix
+## Declare the secret in Nix
 
 Add the secret name to `modules/aspects/_secrets/sops.nix`:
 
@@ -89,7 +89,7 @@ The `secrets` aspect sets `sops.defaultSopsFile` from
 `repo.user.secretFile`, which defaults to `secrets/poby.yaml` in
 `modules/flake/options.nix`.
 
-## Use The Secret For SSH
+## Use the secret for SSH
 
 Reference the SOPS-managed secret path from the matching SSH host block in
 `modules/aspects/_ssh/ssh.nix`:
