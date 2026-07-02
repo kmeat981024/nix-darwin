@@ -23,8 +23,17 @@ in {
       darwinStateVersion = mkOption {
         type = types.int;
       };
-      secretFile = mkOption {
-        type = types.path;
+      secretFiles = mkOption {
+        type = types.submodule {
+          options = {
+            github = mkOption {
+              type = types.path;
+            };
+            ssh = mkOption {
+              type = types.path;
+            };
+          };
+        };
       };
     };
 
@@ -55,6 +64,9 @@ in {
     homeDirectory = mkDefault "/Users/${config.repo.user.name}";
     homeStateVersion = mkDefault "25.11";
     darwinStateVersion = mkDefault 6;
-    secretFile = mkDefault ../../secrets/poby.yaml;
+    secretFiles = {
+      github = mkDefault ../../secrets/github.yaml;
+      ssh = mkDefault ../../secrets/ssh.yaml;
+    };
   };
 }

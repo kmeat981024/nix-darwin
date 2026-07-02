@@ -70,7 +70,7 @@
                           email
                           homeDirectory
                           homeStateVersion
-                          secretFile
+                          secretFiles
                           ;
                       };
                       host = hostContext;

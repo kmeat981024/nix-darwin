@@ -16,8 +16,17 @@ in {
       homeStateVersion = mkOption {
         type = types.str;
       };
-      secretFile = mkOption {
-        type = types.path;
+      secretFiles = mkOption {
+        type = types.submodule {
+          options = {
+            github = mkOption {
+              type = types.path;
+            };
+            ssh = mkOption {
+              type = types.path;
+            };
+          };
+        };
       };
     };
 
