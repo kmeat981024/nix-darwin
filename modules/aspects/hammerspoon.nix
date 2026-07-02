@@ -1,9 +1,17 @@
 {...}: {
-  repo.homeModules.hammerspoon = {lib, ...}: {
+  repo.homeModules.hammerspoon = {
+    config,
+    lib,
+    ...
+  }: {
     home.file.".hammerspoon" = {
       source = ./_hammerspoon;
       recursive = true;
     };
+
+    home.file.".hammerspoon/host.lua".text = ''
+      return "${config.repo.host.name}"
+    '';
 
     home.activation.reloadHammerspoon = lib.hm.dag.entryAfter ["linkGeneration"] ''
       hs=
