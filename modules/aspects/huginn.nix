@@ -10,18 +10,17 @@
         "alt-tab"
         "chatgpt"
         "claude"
-        "cmux"
         "codex-app"
         "cursor"
         "datagrip"
         "docker-desktop"
         "google-gemini"
         "logi-options+"
-        "microsoft-outlook"
         "notion"
         "obsidian"
         "rectangle"
         "slack"
+        "zed"
       ];
     };
   };

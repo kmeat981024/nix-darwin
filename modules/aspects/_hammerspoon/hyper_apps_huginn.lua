@@ -10,6 +10,6 @@ return {
 	n = "notion.id",
 	o = "com.microsoft.Outlook",
 	s = "com.tinyspeck.slackmacgap",
-	t = "com.cmuxterm.app",
+	t = "com.github.wez.wezterm",
 	v = "com.google.Chrome",
 }

@@ -5,7 +5,6 @@
       enableRosetta = true;
       user = config.repo.user.name;
       mutableTaps = true;
-      autoMigrate = true;
     };
 
     homebrew = {
