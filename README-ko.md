@@ -1,8 +1,8 @@
 # nix-darwin
 
 `nix-darwin`, `home-manager`, `nix-homebrew`, `sops-nix` 기반의 선언적 macOS
-설정 저장소입니다. 작은 aspect 모듈을 조합해 macOS 호스트를 만들고,
-Home Manager는 nix-darwin 안에 통합해서 사용합니다.
+설정 저장소입니다. 작은 aspect 모듈을 조합해 macOS 호스트를 만들고 Home Manager는
+nix-darwin 안에 통합해서 사용합니다.
 
 ## 이 저장소가 관리하는 것
 
@@ -95,9 +95,9 @@ just gc
   `browser`, `discord`, `desktop`, `fenrir` 입니다.
 - `cli-tools` aspect가 `zoxide`를 포함한 CLI 사용자 도구 묶음을 담당합니다.
 - `editor` aspect는 NVF와 Zed를 함께 가져옵니다. Zed는 Home Manager로
-  설정하며 사용자 설정과 keymap의 mutable 옵션을 켜고, `nix` 확장,
+  설정하며 사용자 설정과 keymap의 mutable 옵션을 켜고 `nix` 확장,
   Nix language server로 `nixd`, Nix formatter로 Alejandra를 사용합니다.
-- `browser` aspect는 Home Manager로 Zen Browser를 관리하며,
+- `browser` aspect는 Home Manager로 Zen Browser를 관리하며
   `modules/aspects/_browser/` 아래의 브라우저 정책과 프로필 모듈을
   포함합니다.
 - Hammerspoon 앱은 `homebrew` cask 목록으로 설치하고, `hammerspoon`
@@ -106,7 +106,7 @@ just gc
 - `modules/aspects/_*/`는 자동 발견에서 제외되는 내부 구현 경로입니다.
   이 저장소는 `/_`가 포함된 경로를 `import-tree`가 건너뛴다는 규칙을 사용해
   NVF 같은 서브트리를 보호합니다.
-- Home Manager는 nix-darwin을 통해 통합되며, 별도의 `homeConfigurations`
+- Home Manager는 nix-darwin으로 통합되며 별도의 `homeConfigurations`
   출력은 만들지 않습니다.
 
 ## 호스트 추가 방법
@@ -121,7 +121,7 @@ just gc
 
 - 시크릿은 `secrets/*.yaml`에 암호화해서 보관합니다.
 - `.sops.yaml`이 `secrets/.*\.yaml`에 대한 암호화 규칙을 강제합니다.
-- Home Manager는 `secrets` aspect를 통해 `secrets/poby.yaml`에서 아래 항목을
+- Home Manager는 `secrets` aspect로 `secrets/poby.yaml`에서 아래 항목을
   읽습니다.
   - `github_ssh_key`
   - `github_cli_token`
