@@ -2,6 +2,7 @@
   programs.zed-editor = {
     extraPackages = with pkgs; [
       alejandra
+      stylua
     ];
 
     enable = true;
@@ -251,6 +252,20 @@
             external = {
               command = "${pkgs.alejandra}/bin/alejandra";
               arguments = ["--quiet" "--"];
+            };
+          };
+        };
+        Lua = {
+          formatter = {
+            external = {
+              command = "${pkgs.stylua}/bin/stylua";
+              arguments = [
+                "--syntax=Lua54"
+                "--respect-ignores"
+                "--stdin-filepath"
+                "{buffer_path}"
+                "-"
+              ];
             };
           };
         };
