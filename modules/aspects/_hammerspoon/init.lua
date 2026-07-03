@@ -1,6 +1,7 @@
 require("hs.ipc")
 
 local FRemap = require("foundation_remapping")
+local hyperApps = require("hyper_apps")
 local remapper = FRemap.new()
 
 remapper:remap("rcmd", "f18")
@@ -20,19 +21,7 @@ spoon.HyperKeyBindings
 	:bind("r", function()
 		hs.reload()
 	end)
-	:bindApps({
-		a = "com.daymore.Across",
-		b = "app.zen-browser.zen",
-		c = "dev.zed.Zed",
-		d = "com.hnc.Discord",
-		f = "com.apple.finder",
-		k = "com.kakao.KakaoTalkMac",
-		l = "ru.keepcoder.Telegram",
-		m = "com.apple.mail",
-		n = "com.apple.Notes",
-		t = "com.github.wez.wezterm",
-		v = "com.google.Chrome",
-	})
+	:bindApps(hyperApps)
 
 spoon.HyperKeyBindings:start()
 

@@ -14,4 +14,15 @@
       };
     };
   };
+
+  flake.modules.darwin.fenrir = {
+    homebrew = {
+      brews = [
+        "podman"
+        "podman-compose"
+      ];
+
+      casks = [];
+    };
+  };
 }

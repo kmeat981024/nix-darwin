@@ -1,12 +1,14 @@
 {pkgs, ...}: {
-  programs.zed-editor = {
-    extraPackages = with pkgs; [
-      alejandra
-      stylua
-    ];
+  home.packages = with pkgs; [
+    nixd
+    alejandra
+    stylua
+  ];
 
+  programs.zed-editor = {
     enable = true;
-    defaultEditor = true;
+    package = null;
+    defaultEditor = false;
     extensions = [
       "astro"
       "biome"

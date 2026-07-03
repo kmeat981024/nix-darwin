@@ -18,24 +18,16 @@
         ];
       };
 
-      taps = [
-        "postmelee/tap"
-      ];
-
       masApps = {
         KakaoTalk = 869223134;
         Across = 6444851827;
         Bitwarden = 1352778147;
       };
 
-      brews = [
-        "podman"
-        "podman-compose"
-      ];
+      brews = [];
 
       casks = [
-        "alhangeul"
-        "arc"
+        "postmelee/tap/alhangeul"
         "batfi"
         "claude-code@latest"
         "codex"

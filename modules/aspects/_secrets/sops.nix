@@ -1,19 +1,22 @@
 {config, ...}: let
   ageKeyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+  secretFiles = config.repo.user.secretFiles;
 in {
-  home.sessionVariables = {
-    SOPS_AGE_KEY_FILE = ageKeyFile;
-  };
-
   sops = {
     age.keyFile = ageKeyFile;
 
-    defaultSopsFile = config.repo.user.secretFile;
+    defaultSopsFile = secretFiles.github;
 
     secrets = {
-      "github_ssh_key" = {};
-      "github_cli_token" = {};
-      "kmeat_mac_mini_ssh_key" = {};
+      "github_ssh_key" = {
+        sopsFile = secretFiles.github;
+      };
+      "github_cli_token" = {
+        sopsFile = secretFiles.github;
+      };
+      "kmeat_mac_mini_ssh_key" = {
+        sopsFile = secretFiles.ssh;
+      };
     };
   };
 }
