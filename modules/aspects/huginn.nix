@@ -7,7 +7,6 @@
       ];
 
       casks = [
-        "alt-tab"
         "chatgpt"
         "claude"
         "codex-app"

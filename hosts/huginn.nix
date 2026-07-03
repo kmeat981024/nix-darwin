@@ -19,7 +19,6 @@
       "hammerspoon"
       "editor"
       "browser"
-      "discord"
       "huginn"
     ];
   };
