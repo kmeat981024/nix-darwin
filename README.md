@@ -6,7 +6,7 @@ Declarative macOS setup with `nix-darwin`, `home-manager`, `nix-homebrew`, and
 `sops-nix`. The flake assembles one or more macOS hosts from small aspect
 modules, with Home Manager embedded through nix-darwin.
 
-## What This Repo Manages
+## What this repo manages
 
 - Flake orchestration and host assembly in `modules/flake/`
 - Auto-discovered Darwin and Home Manager aspects in `modules/aspects/`
@@ -26,7 +26,7 @@ modules, with Home Manager embedded through nix-darwin.
 $HOME/.config/sops/age/keys.txt
 ```
 
-## Repository Layout
+## Repository layout
 
 - `flake.nix`: `flake-parts` entrypoint and flake inputs
 - `Justfile`: day-to-day commands (`dry-run`, `darwin`, `darwin-debug`, `fmt`,
@@ -47,7 +47,7 @@ $HOME/.config/sops/age/keys.txt
   `features` list
 - `secrets/`: encrypted secret files (`poby.yaml`)
 
-## Common Commands
+## Common commands
 
 ```bash
 # List available tasks
@@ -83,13 +83,13 @@ just clean
 just gc
 ```
 
-## Configuration Notes
+## Configuration notes
 
 - `flake.nix` uses `flake-parts`, keeps `./modules/flake` explicit, and
   auto-discovers `./modules/aspects` and `./hosts` through `import-tree`.
 - `hosts/fenrir.nix` is the current host declaration and maps `fenrir` to one
   flat feature list.
-- `modules/flake/darwin-configurations.nix` assembles each host’s
+- `modules/flake/darwin-configurations.nix` assembles each host's
   `darwinConfigurations.<host>` output and embeds Home Manager for user `poby`.
 - `modules/aspects/` is the feature vocabulary for hosts. The current feature
   set is `base`, `nix-core`, `system-packages`, `homebrew`, `macos-defaults`,
@@ -106,12 +106,12 @@ just gc
   `hammerspoon` aspect links `modules/aspects/_hammerspoon/` to
   `$HOME/.hammerspoon` with Home Manager.
 - `modules/aspects/_*/` contains implementation files that are intentionally not
-  auto-loaded. `import-tree` skips paths containing `/_`, which is the repo’s
+  auto-loaded. `import-tree` skips paths containing `/_`, which is the repo's
   convention for internal helpers and subtrees like the NVF source.
 - Home Manager is integrated through nix-darwin; no standalone
   `homeConfigurations` output is exposed.
 
-## Adding A Host
+## Adding a host
 
 - Create `hosts/<hostname>.nix`.
 - Register `repo.hosts.<hostname>.system`.
